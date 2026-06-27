@@ -1,0 +1,458 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lodgify Public API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-ApiKey",
+      "value": "{{apiKey}}",
+      "in": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Properties",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List properties.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lodgify.com/v2/properties"
+          },
+          "docs": "Returns a paged list of all properties on the account."
+        },
+        {
+          "info": {
+            "name": "Get a property.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lodgify.com/v2/properties/{id}"
+          },
+          "docs": "Returns the details of a single property by its identifier."
+        },
+        {
+          "info": {
+            "name": "List property room types.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lodgify.com/v2/properties/{propertyId}/rooms"
+          },
+          "docs": "Returns the room types configured for a property."
+        },
+        {
+          "info": {
+            "name": "Get property availability.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lodgify.com/v2/properties/{propertyId}/availability"
+          },
+          "docs": "Returns availability periods for a property."
+        },
+        {
+          "info": {
+            "name": "Update property availability.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.lodgify.com/v2/properties/{propertyId}/availability",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates availability periods for a property."
+        },
+        {
+          "info": {
+            "name": "Get property statistics.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lodgify.com/v2/properties/{propertyId}/statistics"
+          },
+          "docs": "Returns statistics for a property."
+        },
+        {
+          "info": {
+            "name": "List deleted properties.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lodgify.com/v2/deletedProperties"
+          },
+          "docs": "Returns properties that have been deleted."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Rates & Availability",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all availability.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lodgify.com/v2/availability"
+          },
+          "docs": "Returns availability across the calling user's properties."
+        },
+        {
+          "info": {
+            "name": "Get property availability.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lodgify.com/v2/availability/{propertyId}"
+          },
+          "docs": "Returns the availability calendar for a property over a date range."
+        },
+        {
+          "info": {
+            "name": "Get room type availability.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lodgify.com/v2/availability/{propertyId}/{roomTypeId}"
+          },
+          "docs": "Returns the availability calendar for a specific room type."
+        },
+        {
+          "info": {
+            "name": "Get daily rates calendar.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lodgify.com/v2/rates/calendar"
+          },
+          "docs": "Returns daily rates by date for a property and room type."
+        },
+        {
+          "info": {
+            "name": "Get rate settings.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lodgify.com/v2/rates/settings"
+          },
+          "docs": "Returns rate settings for a property."
+        },
+        {
+          "info": {
+            "name": "Create or update rates.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lodgify.com/v2/rates",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates or updates rates for a property and room type."
+        },
+        {
+          "info": {
+            "name": "Update a rate.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.lodgify.com/v2/rates/{id}",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a single rate by its identifier."
+        },
+        {
+          "info": {
+            "name": "Save rates without availability (v1).",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lodgify.com/v1/rates/savewithoutavailability",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Saves rates for a property without modifying availability."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Bookings & Reservations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List bookings.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lodgify.com/v2/reservations/bookings"
+          },
+          "docs": "Returns a paged list of bookings."
+        },
+        {
+          "info": {
+            "name": "Create a booking.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lodgify.com/v2/reservations/bookings",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new booking."
+        },
+        {
+          "info": {
+            "name": "Get a booking.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lodgify.com/v2/reservations/bookings/{id}"
+          },
+          "docs": "Returns a single booking by its identifier."
+        },
+        {
+          "info": {
+            "name": "Update a booking.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.lodgify.com/v2/reservations/bookings/{id}",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing booking."
+        },
+        {
+          "info": {
+            "name": "Delete a booking.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.lodgify.com/v2/reservations/bookings/{id}"
+          },
+          "docs": "Deletes a booking by its identifier."
+        },
+        {
+          "info": {
+            "name": "Check in a booking.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.lodgify.com/v2/reservations/bookings/{id}/checkin"
+          },
+          "docs": "Marks a booking as checked in."
+        },
+        {
+          "info": {
+            "name": "Check out a booking.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.lodgify.com/v2/reservations/bookings/{id}/checkout"
+          },
+          "docs": "Marks a booking as checked out."
+        },
+        {
+          "info": {
+            "name": "Update booking key codes.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.lodgify.com/v2/reservations/bookings/{id}/keyCodes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the key codes attached to a booking."
+        },
+        {
+          "info": {
+            "name": "List external bookings.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lodgify.com/v2/reservations/bookings/{id}/externalBookings"
+          },
+          "docs": "Returns external bookings associated with a booking."
+        },
+        {
+          "info": {
+            "name": "Get booking payment link.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lodgify.com/v2/reservations/bookings/{id}/quote/paymentLink"
+          },
+          "docs": "Returns the payment link for a booking."
+        },
+        {
+          "info": {
+            "name": "Create booking payment link.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lodgify.com/v2/reservations/bookings/{id}/quote/paymentLink",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a payment link for a booking."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Quotes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a quote for a property.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lodgify.com/v2/quote/{propertyId}"
+          },
+          "docs": "Returns a priced quote for a property given dates, room types, and guest counts."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Messaging",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a messaging thread.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lodgify.com/v2/messaging/{threadGuid}"
+          },
+          "docs": "Returns a guest messaging thread by its thread GUID (found in booking data)."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List webhook subscriptions.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lodgify.com/webhooks/v1/list"
+          },
+          "docs": "Returns all active webhook subscriptions for the account."
+        },
+        {
+          "info": {
+            "name": "Subscribe to a webhook event.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lodgify.com/webhooks/v1/subscribe",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Subscribes a unique target URL to a given event."
+        },
+        {
+          "info": {
+            "name": "Unsubscribe from a webhook event.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.lodgify.com/webhooks/v1/unsubscribe",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Removes a webhook subscription."
+        },
+        {
+          "info": {
+            "name": "Delete a webhook subscription.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.lodgify.com/webhooks/v1/{id}"
+          },
+          "docs": "Deletes a specific webhook subscription by its identifier."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

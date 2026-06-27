@@ -1,0 +1,82 @@
+aid: lodgify
+name: Lodgify
+review:
+  question: Does Lodgify expose a documented public WebSocket API?
+  answer: false
+  date: '2026-06-25'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was created. Lodgify's documented public surface is a
+    REST API plus outbound HTTP webhooks. Webhooks are server-to-server HTTP
+    callbacks (the platform POSTs event payloads to a subscriber-provided
+    target_url), not a client-consumed event-streaming transport, and no
+    Server-Sent Events or WebSocket stream is documented, so there was no
+    in-scope asynchronous transport to model.
+findings:
+  summary: |
+    Lodgify does not publish a documented public WebSocket API. The Lodgify
+    Public API (v1 and v2) under https://api.lodgify.com is a REST (HTTPS) API
+    authenticated with an X-ApiKey header. Real-time notification is delivered
+    through outbound webhooks: a subscriber registers a unique target_url for
+    an event, and Lodgify calls that URL with event data when the event occurs.
+    No realtime, bidirectional WebSocket (ws:// or wss://) endpoint is
+    documented for properties, availability, rates, bookings, or messaging.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.lodgify.com
+      documented: true
+    - protocol: Webhook
+      scheme: https
+      note: Outbound HTTP callbacks to a subscriber target_url on platform events; subscribe/unsubscribe via the webhooks endpoints. Not WebSocket.
+      documented: true
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented in Lodgify's API reference for any product surface as of the review date.
+  endpointsConfirmedRest:
+    - GET  https://api.lodgify.com/v2/properties
+    - GET  https://api.lodgify.com/v2/properties/{id}
+    - GET  https://api.lodgify.com/v2/properties/{id}/rooms
+    - GET  https://api.lodgify.com/v2/availability/{propertyId}
+    - GET  https://api.lodgify.com/v2/rates/calendar
+    - GET  https://api.lodgify.com/v2/rates/settings
+    - POST https://api.lodgify.com/v1/rates/savewithoutavailability
+    - GET  https://api.lodgify.com/v2/quote/{propertyId}
+    - GET  https://api.lodgify.com/v2/reservations/bookings
+    - POST https://api.lodgify.com/v2/reservations/bookings
+    - GET  https://api.lodgify.com/v2/reservations/bookings/{id}
+    - PUT  https://api.lodgify.com/v2/reservations/bookings/{id}
+    - DELETE https://api.lodgify.com/v2/reservations/bookings/{id}
+    - GET  https://api.lodgify.com/v2/reservations/bookings/{id}/quote/paymentLink
+    - POST https://api.lodgify.com/v2/reservations/bookings/{id}/quote/paymentLink
+    - PUT  https://api.lodgify.com/v2/reservations/bookings/{id}/keyCodes
+    - PUT  https://api.lodgify.com/v2/reservations/bookings/{id}/checkin
+    - PUT  https://api.lodgify.com/v2/reservations/bookings/{id}/checkout
+    - GET  https://api.lodgify.com/v2/messaging/{threadGuid}
+    - GET  https://api.lodgify.com/v2/reservations/bookings/{id}/externalBookings
+    - GET  https://api.lodgify.com/v2/availability
+    - GET  https://api.lodgify.com/v2/availability/{propertyId}/{roomTypeId}
+    - GET    https://api.lodgify.com/webhooks/v1/list
+    - POST   https://api.lodgify.com/webhooks/v1/subscribe
+    - DELETE https://api.lodgify.com/webhooks/v1/unsubscribe
+    - DELETE https://api.lodgify.com/webhooks/v1/{id}
+sources:
+  - url: https://docs.lodgify.com
+    type: Documentation
+    note: Getting started lists the REST base URL https://api.lodgify.com and X-ApiKey auth; no WebSocket mentioned.
+  - url: https://docs.lodgify.com/reference
+    type: APIReference
+    note: All documented endpoints are HTTPS REST across v1 and v2.
+  - url: https://docs.lodgify.com/reference/webhooks
+    type: Documentation
+    note: Webhooks are outbound HTTP callbacks to a subscriber target_url; subscribe/unsubscribe by API key. Not WebSocket.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: false
+  reason: |
+    No WebSocket protocol surface exists, and the only asynchronous mechanism
+    (outbound webhooks) is a server-to-server HTTP callback rather than a
+    client-consumed event stream, so no AsyncAPI document was authored. The
+    REST surface is captured in openapi/lodgify-openapi.yml.

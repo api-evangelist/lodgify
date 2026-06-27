@@ -1,0 +1,47 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Lodgify
+providerId: lodgify
+created: '2026-06-25'
+modified: '2026-06-25'
+reconciled: false
+tags:
+- Vacation Rental
+- Property Management
+- Booking
+- Channel Manager
+- Travel
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  The Lodgify Public API enforces per-account rate limits on requests to
+  https://api.lodgify.com, authenticated by the X-ApiKey header. Integration
+  guides describe a typical limit on the order of 100 requests per minute, with
+  higher limits available on Enterprise agreements. Exact published per-endpoint
+  limits are not reconciled in this artifact; clients should honor throttling
+  responses and back off.
+notes: >-
+  The ~100 requests/minute figure comes from third-party integration guides,
+  not a confirmed official figure. Verify current per-account and per-endpoint
+  limits in the Lodgify API documentation during reconciliation.
+sources:
+- https://docs.lodgify.com
+- https://docs.lodgify.com/reference
+responseCodes:
+  throttled: 429
+limits:
+- name: Requests Per Minute
+  scope: account
+  metric: requests
+  limit: see provider documentation (commonly cited ~100/min)
+  notes: Per-account request rate; higher on Enterprise agreements.
+policies:
+- name: Tiered Limits
+  description: Higher rate limits are available via custom Enterprise agreements.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and retry on HTTP 429.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

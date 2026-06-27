@@ -1,0 +1,131 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Lodgify
+providerId: lodgify
+created: '2026-06-25'
+modified: '2026-06-25'
+reconciled: false
+tags:
+- Vacation Rental
+- Property Management
+- Booking
+- Channel Manager
+- Travel
+- Plans
+description: >-
+  Lodgify is sold as a SaaS subscription priced per rental, billed annually
+  (monthly billing costs more), across three tiers - Starter, Professional,
+  and Ultimate. API access is included on higher tiers; Lodgify takes no
+  per-booking commission on the booking-fee-free tiers. Prices below are
+  approximate published rates on annual billing and vary by number of rentals;
+  verify current pricing on the Lodgify pricing page.
+notes: >-
+  Tier prices and the Starter booking fee vary by source and number of rentals.
+  Reconcile against https://www.lodgify.com/pricing before relying on exact
+  figures. API access availability per tier should also be confirmed.
+sources:
+- https://www.lodgify.com/pricing/
+- https://docs.lodgify.com
+plans:
+- id: lodgify-starter
+  name: Starter
+  type: subscription
+  description: >-
+    Entry tier for new hosts - website builder, calendar sync, and basic
+    channel management. Carries a small per-direct-booking fee.
+  entries:
+  - label: Subscription (per rental, annual billing)
+    name: starter_subscription
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: from ~$13-16 per month per rental
+    userMultiplied: false
+  - label: Direct Booking Fee
+    name: starter_booking_fee
+    type: usage
+    metric: bookings
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: ~1.9% per direct booking
+    userMultiplied: false
+  elements:
+  - name: Website Builder
+  - name: Booking Engine
+  - name: Calendar Sync
+  - name: Basic Channel Management
+- id: lodgify-professional
+  name: Professional
+  type: subscription
+  description: >-
+    Mid tier with advanced channel management across 20+ channels, dynamic
+    pricing, and guest messaging automation. No per-booking fee.
+  entries:
+  - label: Subscription (per rental, annual billing)
+    name: professional_subscription
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: from ~$35-38 per month per rental
+    userMultiplied: false
+  elements:
+  - name: Advanced Channel Manager
+  - name: Dynamic Pricing
+  - name: Booking Engine
+  - name: Guest Messaging Automation
+  - name: No Booking Fee
+- id: lodgify-ultimate
+  name: Ultimate
+  type: subscription
+  description: >-
+    Top tier adding advanced reporting and analytics, task automation,
+    accounting features, team collaboration, and API access. No per-booking fee.
+  entries:
+  - label: Subscription (per rental, annual billing)
+    name: ultimate_subscription
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: from ~$59 per month per rental
+    userMultiplied: false
+  elements:
+  - name: Advanced Reporting and Analytics
+  - name: Task Automation
+  - name: Accounting Features
+  - name: Team Collaboration
+  - name: API Access
+  - name: No Booking Fee
+- id: lodgify-trial
+  name: Free Trial
+  type: trial
+  description: >-
+    Time-limited free trial of the platform with no credit card required and
+    no long-term contract.
+  entries:
+  - label: Free Trial
+    name: trial
+    type: flat
+    metric: trial
+    limit: -1
+    timeFrame: day
+    geo: global
+    unit: 1
+    price: free (limited-time trial)
+    userMultiplied: false
+  elements:
+  - name: Full Platform Trial
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,399 @@
+{
+  "info": {
+    "name": "Lodgify Public API",
+    "description": "Postman collection for the Lodgify Public API (v1 and v2) at https://api.lodgify.com. Authenticated with an X-ApiKey header. Covers properties, availability, rates and quotes, bookings and reservations, messaging, and webhooks.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      { "key": "key", "value": "X-ApiKey", "type": "string" },
+      { "key": "value", "value": "{{apiKey}}", "type": "string" },
+      { "key": "in", "value": "header", "type": "string" }
+    ]
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "https://api.lodgify.com" },
+    { "key": "apiKey", "value": "" },
+    { "key": "propertyId", "value": "" },
+    { "key": "bookingId", "value": "" },
+    { "key": "threadGuid", "value": "" },
+    { "key": "webhookId", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "Properties",
+      "item": [
+        {
+          "name": "List Properties",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/v2/properties?page=1&size=50",
+              "host": ["{{baseUrl}}"],
+              "path": ["v2", "properties"],
+              "query": [
+                { "key": "page", "value": "1" },
+                { "key": "size", "value": "50" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Property",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/v2/properties/{{propertyId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["v2", "properties", "{{propertyId}}"]
+            }
+          }
+        },
+        {
+          "name": "List Property Rooms",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/v2/properties/{{propertyId}}/rooms",
+              "host": ["{{baseUrl}}"],
+              "path": ["v2", "properties", "{{propertyId}}", "rooms"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Rates & Availability",
+      "item": [
+        {
+          "name": "Get Property Availability",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/v2/availability/{{propertyId}}?from=2026-07-01&to=2026-07-31",
+              "host": ["{{baseUrl}}"],
+              "path": ["v2", "availability", "{{propertyId}}"],
+              "query": [
+                { "key": "from", "value": "2026-07-01" },
+                { "key": "to", "value": "2026-07-31" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Daily Rates",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/v2/rates/calendar?HouseId={{propertyId}}&StartDate=2026-07-01&EndDate=2026-07-31",
+              "host": ["{{baseUrl}}"],
+              "path": ["v2", "rates", "calendar"],
+              "query": [
+                { "key": "HouseId", "value": "{{propertyId}}" },
+                { "key": "StartDate", "value": "2026-07-01" },
+                { "key": "EndDate", "value": "2026-07-31" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Rate Settings",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/v2/rates/settings?HouseId={{propertyId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["v2", "rates", "settings"],
+              "query": [
+                { "key": "HouseId", "value": "{{propertyId}}" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Rates",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"property_id\": 0,\n  \"rates\": [\n    {\n      \"room_type_id\": 0,\n      \"start_date\": \"2026-07-01\",\n      \"end_date\": \"2026-07-07\",\n      \"price_per_day\": 120.0,\n      \"min_stay\": 2\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v1/rates/savewithoutavailability",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "rates", "savewithoutavailability"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Quotes",
+      "item": [
+        {
+          "name": "Get Quote",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/v2/quote/{{propertyId}}?from=2026-07-01&to=2026-07-07&roomTypes[0].Id=0&guest_breakdown[adults]=2",
+              "host": ["{{baseUrl}}"],
+              "path": ["v2", "quote", "{{propertyId}}"],
+              "query": [
+                { "key": "from", "value": "2026-07-01" },
+                { "key": "to", "value": "2026-07-07" },
+                { "key": "roomTypes[0].Id", "value": "0" },
+                { "key": "guest_breakdown[adults]", "value": "2" }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Bookings & Reservations",
+      "item": [
+        {
+          "name": "List Bookings",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/v2/reservations/bookings?page=1&size=50",
+              "host": ["{{baseUrl}}"],
+              "path": ["v2", "reservations", "bookings"],
+              "query": [
+                { "key": "page", "value": "1" },
+                { "key": "size", "value": "50" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Booking",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"property_id\": 0,\n  \"arrival\": \"2026-07-01\",\n  \"departure\": \"2026-07-07\",\n  \"status\": \"Booked\",\n  \"guest\": {\n    \"name\": \"Jane Doe\",\n    \"email\": \"jane@example.com\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v2/reservations/bookings",
+              "host": ["{{baseUrl}}"],
+              "path": ["v2", "reservations", "bookings"]
+            }
+          }
+        },
+        {
+          "name": "Get Booking",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/v2/reservations/bookings/{{bookingId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["v2", "reservations", "bookings", "{{bookingId}}"]
+            }
+          }
+        },
+        {
+          "name": "Update Booking",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"Booked\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v2/reservations/bookings/{{bookingId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["v2", "reservations", "bookings", "{{bookingId}}"]
+            }
+          }
+        },
+        {
+          "name": "Delete Booking",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/v2/reservations/bookings/{{bookingId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["v2", "reservations", "bookings", "{{bookingId}}"]
+            }
+          }
+        },
+        {
+          "name": "Get Booking Payment Link",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/v2/reservations/bookings/{{bookingId}}/quote/paymentLink",
+              "host": ["{{baseUrl}}"],
+              "path": ["v2", "reservations", "bookings", "{{bookingId}}", "quote", "paymentLink"]
+            }
+          }
+        },
+        {
+          "name": "Create Booking Payment Link",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": 100.0,\n  \"currency\": \"USD\",\n  \"description\": \"Deposit\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v2/reservations/bookings/{{bookingId}}/quote/paymentLink",
+              "host": ["{{baseUrl}}"],
+              "path": ["v2", "reservations", "bookings", "{{bookingId}}", "quote", "paymentLink"]
+            }
+          }
+        },
+        {
+          "name": "Update Key Codes",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_codes\": [\"1234\"]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v2/reservations/bookings/{{bookingId}}/keyCodes",
+              "host": ["{{baseUrl}}"],
+              "path": ["v2", "reservations", "bookings", "{{bookingId}}", "keyCodes"]
+            }
+          }
+        },
+        {
+          "name": "Check In Booking",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/v2/reservations/bookings/{{bookingId}}/checkin",
+              "host": ["{{baseUrl}}"],
+              "path": ["v2", "reservations", "bookings", "{{bookingId}}", "checkin"]
+            }
+          }
+        },
+        {
+          "name": "Check Out Booking",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/v2/reservations/bookings/{{bookingId}}/checkout",
+              "host": ["{{baseUrl}}"],
+              "path": ["v2", "reservations", "bookings", "{{bookingId}}", "checkout"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Messaging",
+      "item": [
+        {
+          "name": "Get Thread",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/v2/messaging/{{threadGuid}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["v2", "messaging", "{{threadGuid}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Webhooks",
+      "item": [
+        {
+          "name": "List Webhooks",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/webhooks/v1/list",
+              "host": ["{{baseUrl}}"],
+              "path": ["webhooks", "v1", "list"]
+            }
+          }
+        },
+        {
+          "name": "Subscribe Webhook",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"event\": \"booking_change\",\n  \"target_url\": \"https://example.com/lodgify-webhook\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/webhooks/v1/subscribe",
+              "host": ["{{baseUrl}}"],
+              "path": ["webhooks", "v1", "subscribe"]
+            }
+          }
+        },
+        {
+          "name": "Unsubscribe Webhook",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/webhooks/v1/unsubscribe",
+              "host": ["{{baseUrl}}"],
+              "path": ["webhooks", "v1", "unsubscribe"]
+            }
+          }
+        },
+        {
+          "name": "Delete Webhook",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/webhooks/v1/{{webhookId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["webhooks", "v1", "{{webhookId}}"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

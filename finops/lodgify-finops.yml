@@ -1,0 +1,91 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Lodgify
+providerId: lodgify
+created: '2026-06-25'
+modified: '2026-06-25'
+reconciled: false
+tags:
+- Vacation Rental
+- Property Management
+- Booking
+- Channel Manager
+- Travel
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Lodgify spend. Lodgify bills a recurring per-rental SaaS
+  subscription (Starter / Professional / Ultimate) on monthly or annual terms,
+  plus an optional per-direct-booking fee on the Starter tier and payment
+  processing fees on transactions. The Public API itself is included with the
+  subscription rather than metered per call, so cost is driven primarily by the
+  number of rentals and the chosen tier.
+notes: >-
+  Subscription rates and the Starter booking fee vary by source and rental
+  count; verify against the Lodgify pricing page during reconciliation. API
+  calls are not separately metered as of this artifact.
+sources:
+- https://www.lodgify.com/pricing/
+- https://docs.lodgify.com
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Lodgify
+serviceCategory: Vacation Rental Software
+billingModel:
+  pricingCategory: Subscription-Based
+  billingFrequency: Monthly or Annual
+  billingCurrency: USD
+  chargeCategories:
+  - Usage
+  - Purchase
+  - Adjustment
+focusColumns:
+  ServiceName: Lodgify
+  ServiceCategory: Business Applications
+  ProviderName: Lodgify
+  PublisherName: Lodgify
+  InvoiceIssuerName: Lodgify
+  BillingCurrency: USD
+  ChargeCategory: Purchase
+  PricingCategory: Subscription-Based
+meters:
+- name: subscription_rentals
+  description: Recurring subscription billed per rental on the chosen tier.
+  unit: rentals
+  aggregation: sum
+  dimensions:
+  - account
+  - tier
+- name: direct_booking_fee
+  description: Per-direct-booking fee applied on the Starter tier.
+  unit: bookings
+  aggregation: sum
+  dimensions:
+  - account
+  - property
+- name: payment_processing_fee
+  description: Payment processing fees on transactions handled through Lodgify.
+  unit: transactions
+  aggregation: sum
+  dimensions:
+  - account
+  - property
+principles:
+- name: Visibility
+  description: Track the number of active rentals and the subscription tier driving recurring spend.
+- name: Allocation
+  description: Map per-rental subscription cost to the property or portfolio that owns it.
+- name: Optimization
+  description: Choose annual billing over monthly to avoid the monthly surcharge; move off the Starter tier to eliminate the per-booking fee when volume justifies it.
+- name: Accountability
+  description: Review tier and rental count against actual booking volume each renewal cycle.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
