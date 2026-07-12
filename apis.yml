@@ -158,6 +158,10 @@ apis:
     booking and rate changes) and lists active webhook subscriptions for real-time
     notifications.
 common:
+- type: DomainSecurity
+  url: security/lodgify-domain-security.yml
+- type: Authentication
+  url: authentication/lodgify-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/lodgify
 - type: LinkedIn
@@ -172,6 +176,8 @@ common:
   url: rate-limits/lodgify-rate-limits.yml
 - type: FinOps
   url: finops/lodgify-finops.yml
+- url: https://www.lodgify.com/blog/feed/
+  type: Blog
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
