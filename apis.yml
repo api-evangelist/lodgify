@@ -158,6 +158,8 @@ apis:
     booking and rate changes) and lists active webhook subscriptions for real-time
     notifications.
 common:
+- type: AgenticAccess
+  url: agentic-access/lodgify-agentic-access.yml
 - type: DomainSecurity
   url: security/lodgify-domain-security.yml
 - type: Authentication
