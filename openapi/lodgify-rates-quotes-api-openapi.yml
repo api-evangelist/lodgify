@@ -1,0 +1,256 @@
+openapi: 3.0.1
+info:
+  title: Lodgify Public Availability Rates & Quotes API
+  description: The Lodgify Public API is a REST interface for the Lodgify vacation rental platform. It exposes properties and room types, availability calendars, daily rates, rate settings, priced quotes, the full booking and reservation lifecycle, guest messaging threads, and webhook subscriptions. The API spans two versions (v1 and v2) under the host https://api.lodgify.com and is authenticated with an X-ApiKey request header.
+  termsOfService: https://www.lodgify.com/legal-stuff/
+  contact:
+    name: Lodgify Support
+    url: https://docs.lodgify.com
+  version: '2.0'
+servers:
+- url: https://api.lodgify.com
+  description: Lodgify Public API (v1 and v2 paths)
+security:
+- ApiKeyAuth: []
+tags:
+- name: Rates & Quotes
+  description: Daily rates, rate settings, and priced stay quotes.
+paths:
+  /v2/rates/calendar:
+    get:
+      operationId: getDailyRates
+      tags:
+      - Rates & Quotes
+      summary: Get daily rates
+      description: Returns the daily rates calendar for the requested room types, by roomTypeId or houseId, over a date range.
+      parameters:
+      - name: HouseId
+        in: query
+        schema:
+          type: integer
+          format: int32
+      - name: RoomTypeId
+        in: query
+        schema:
+          type: integer
+          format: int32
+      - name: StartDate
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: EndDate
+        in: query
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: Daily rate entries.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DailyRate'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v2/rates/settings:
+    get:
+      operationId: getRateSettings
+      tags:
+      - Rates & Quotes
+      summary: Get rate settings
+      description: Returns the rate settings for the given houseId.
+      parameters:
+      - name: HouseId
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Rate settings for the property.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateSettings'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v1/rates/savewithoutavailability:
+    post:
+      operationId: updateRates
+      tags:
+      - Rates & Quotes
+      summary: Update rates
+      description: Saves or updates rates for room types without changing availability.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RateUpdate'
+      responses:
+        '200':
+          description: Rates updated.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /v2/quote/{propertyId}:
+    get:
+      operationId: getQuote
+      tags:
+      - Rates & Quotes
+      summary: Get a quote
+      description: Returns a priced quote for a stay at a property, including the room rate, fees, taxes, and any applicable discounts.
+      parameters:
+      - name: propertyId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - $ref: '#/components/parameters/From'
+      - $ref: '#/components/parameters/To'
+      - name: roomTypes[0].Id
+        in: query
+        schema:
+          type: integer
+          format: int32
+      - name: guest_breakdown[adults]
+        in: query
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: A priced quote for the requested stay.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Quote'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    Quote:
+      type: object
+      properties:
+        total_including_vat:
+          type: number
+          format: double
+        currency_code:
+          type: string
+        room_types:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                format: int32
+              subtotal:
+                type: number
+                format: double
+        amenities_subtotal:
+          type: number
+          format: double
+        fees_subtotal:
+          type: number
+          format: double
+        taxes_subtotal:
+          type: number
+          format: double
+    RateUpdate:
+      type: object
+      properties:
+        property_id:
+          type: integer
+          format: int32
+        rates:
+          type: array
+          items:
+            type: object
+            properties:
+              room_type_id:
+                type: integer
+                format: int32
+              start_date:
+                type: string
+                format: date
+              end_date:
+                type: string
+                format: date
+              price_per_day:
+                type: number
+                format: double
+              min_stay:
+                type: integer
+                format: int32
+    RateSettings:
+      type: object
+      properties:
+        house_id:
+          type: integer
+          format: int32
+        currency_code:
+          type: string
+        check_in_time:
+          type: string
+        check_out_time:
+          type: string
+    DailyRate:
+      type: object
+      properties:
+        room_type_id:
+          type: integer
+          format: int32
+        date:
+          type: string
+          format: date
+        price_per_day:
+          type: number
+          format: double
+        min_stay:
+          type: integer
+          format: int32
+        max_stay:
+          type: integer
+          format: int32
+        currency_code:
+          type: string
+  parameters:
+    From:
+      name: from
+      in: query
+      schema:
+        type: string
+        format: date
+      description: Start date (YYYY-MM-DD).
+    To:
+      name: to
+      in: query
+      schema:
+        type: string
+        format: date
+      description: End date (YYYY-MM-DD).
+  responses:
+    Unauthorized:
+      description: Missing or invalid X-ApiKey.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-ApiKey
+      description: Account API key passed in the X-ApiKey request header.

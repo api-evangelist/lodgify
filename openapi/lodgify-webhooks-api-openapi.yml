@@ -1,0 +1,155 @@
+openapi: 3.0.1
+info:
+  title: Lodgify Public Availability Webhooks API
+  description: The Lodgify Public API is a REST interface for the Lodgify vacation rental platform. It exposes properties and room types, availability calendars, daily rates, rate settings, priced quotes, the full booking and reservation lifecycle, guest messaging threads, and webhook subscriptions. The API spans two versions (v1 and v2) under the host https://api.lodgify.com and is authenticated with an X-ApiKey request header.
+  termsOfService: https://www.lodgify.com/legal-stuff/
+  contact:
+    name: Lodgify Support
+    url: https://docs.lodgify.com
+  version: '2.0'
+servers:
+- url: https://api.lodgify.com
+  description: Lodgify Public API (v1 and v2 paths)
+security:
+- ApiKeyAuth: []
+tags:
+- name: Webhooks
+  description: Event subscriptions for real-time notifications.
+paths:
+  /webhooks/v1/list:
+    get:
+      operationId: listWebhooks
+      tags:
+      - Webhooks
+      summary: List webhook subscriptions
+      description: Returns all active webhook subscriptions for the account.
+      responses:
+        '200':
+          description: A list of webhook subscriptions.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Webhook'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /webhooks/v1/subscribe:
+    post:
+      operationId: subscribeWebhook
+      tags:
+      - Webhooks
+      summary: Subscribe to a webhook event
+      description: Subscribes a unique target URL to a given event. When the event occurs the target URL is called with event-related information and should return a 200 OK response.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookSubscribe'
+      responses:
+        '200':
+          description: Subscription created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /webhooks/v1/unsubscribe:
+    delete:
+      operationId: unsubscribeWebhook
+      tags:
+      - Webhooks
+      summary: Unsubscribe from a webhook event
+      description: Removes a webhook subscription by its identifier.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookUnsubscribe'
+      responses:
+        '200':
+          description: Subscription removed.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /webhooks/v1/{id}:
+    delete:
+      operationId: deleteWebhook
+      tags:
+      - Webhooks
+      summary: Delete a webhook subscription
+      description: Deletes a specific webhook subscription by its identifier.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Subscription deleted.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        event:
+          type: string
+        target_url:
+          type: string
+          format: uri
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    WebhookSubscribe:
+      type: object
+      required:
+      - event
+      - target_url
+      properties:
+        event:
+          type: string
+          description: Event name to subscribe to (for example, booking_change).
+        target_url:
+          type: string
+          format: uri
+          description: Unique URL called when the event occurs.
+    WebhookUnsubscribe:
+      type: object
+      required:
+      - id
+      properties:
+        id:
+          type: string
+          description: Identifier of the subscription to remove.
+  responses:
+    Unauthorized:
+      description: Missing or invalid X-ApiKey.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-ApiKey
+      description: Account API key passed in the X-ApiKey request header.
