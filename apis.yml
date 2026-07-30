@@ -8,7 +8,20 @@ description: Lodgify is all-in-one vacation rental software for property owners 
   https://api.lodgify.com for managing properties, availability, rates and quotes,
   bookings and reservations, guest messaging, and webhook subscriptions, authenticated
   with an X-ApiKey header.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: true
+  try_now: true
+  public: false
+  label: Freemium (free trial) · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/lodgify.png
 tags:
 - Vacation Rental
 - Property Management
@@ -19,144 +32,198 @@ created: '2026-06-25'
 modified: '2026-06-25'
 specificationVersion: '0.19'
 apis:
-- aid: lodgify:properties
-  name: Lodgify Properties API
-  tags:
-  - Properties
-  - Rooms
-  - Listings
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+- aid: lodgify:lodgify-availability-api
+  name: Lodgify Availability API
+  description: Availability calendars for properties and room types.
   humanURL: https://docs.lodgify.com/reference
   baseURL: https://api.lodgify.com/v2
-  properties:
-  - url: https://docs.lodgify.com/reference
-    type: Documentation
-  - url: https://docs.lodgify.com/reference/getallpropertiesasync
-    type: APIReference
-  - url: openapi/lodgify-openapi.yml
-    type: OpenAPI
-  - url: collections/lodgify.postman_collection.json
-    type: PostmanCollection
-  - url: collections/lodgify.opencollection.json
-    type: OpenCollection
-  description: Lists and retrieves vacation rental properties and their room types,
-    including property details, per-property availability, statistics, and deleted
-    properties.
-- aid: lodgify:rates-availability
-  name: Lodgify Rates & Availability API
   tags:
-  - Rates
-  - Pricing
   - Availability
-  - Calendar
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.lodgify.com/reference/ratescalendar
-  baseURL: https://api.lodgify.com/v2
   properties:
-  - url: https://docs.lodgify.com/reference/ratescalendar
-    type: Documentation
-  - url: https://docs.lodgify.com/reference/ratescalendar
-    type: APIReference
-  - url: openapi/lodgify-openapi.yml
-    type: OpenAPI
-  - url: collections/lodgify.postman_collection.json
-    type: PostmanCollection
-  - url: collections/lodgify.opencollection.json
-    type: OpenCollection
-  description: Reads the daily rates calendar and rate settings, creates and updates
-    rates, and queries availability for users, properties, and room types for syncing
-    and availability checks against connected channels.
-- aid: lodgify:bookings-reservations
-  name: Lodgify Bookings & Reservations API
+  - type: OpenAPI
+    url: openapi/lodgify-availability-api-openapi.yml
+  - type: Documentation
+    url: https://docs.lodgify.com/reference
+  - type: APIReference
+    url: https://docs.lodgify.com/reference/getallpropertiesasync
+  - type: PostmanCollection
+    url: collections/lodgify.postman_collection.json
+  - type: OpenCollection
+    url: collections/lodgify.opencollection.json
+  - type: Documentation
+    url: https://docs.lodgify.com/reference/ratescalendar
+  - type: APIReference
+    url: https://docs.lodgify.com/reference/ratescalendar
+  - type: APIReference
+    url: https://docs.lodgify.com/reference
+  - type: Documentation
+    url: https://docs.lodgify.com/reference/get_v2-messaging-threadguid
+  - type: APIReference
+    url: https://docs.lodgify.com/reference/get_v2-messaging-threadguid
+  - type: Documentation
+    url: https://docs.lodgify.com/reference/webhooks
+  - type: APIReference
+    url: https://docs.lodgify.com/reference/post_webhooks-v1-subscribe
+- aid: lodgify:lodgify-bookings-api
+  name: Lodgify Bookings API
+  description: Booking and reservation lifecycle management.
+  humanURL: https://docs.lodgify.com/reference
+  baseURL: https://api.lodgify.com/v2
   tags:
   - Bookings
-  - Reservations
-  - Payments
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.lodgify.com/reference
-  baseURL: https://api.lodgify.com/v2
   properties:
-  - url: https://docs.lodgify.com/reference
-    type: Documentation
-  - url: https://docs.lodgify.com/reference
-    type: APIReference
-  - url: openapi/lodgify-openapi.yml
-    type: OpenAPI
-  - url: collections/lodgify.postman_collection.json
-    type: PostmanCollection
-  - url: collections/lodgify.opencollection.json
-    type: OpenCollection
-  description: Full lifecycle management of bookings and reservations - create, read,
-    update, and delete bookings, generate payment links, set key codes, list external
-    bookings, and perform check-in and check-out.
-- aid: lodgify:quotes
-  name: Lodgify Quotes API
-  tags:
-  - Quotes
-  - Pricing
-  - Stays
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.lodgify.com/reference
-  baseURL: https://api.lodgify.com/v2
-  properties:
-  - url: https://docs.lodgify.com/reference
-    type: Documentation
-  - url: https://docs.lodgify.com/reference
-    type: APIReference
-  - url: openapi/lodgify-openapi.yml
-    type: OpenAPI
-  - url: collections/lodgify.postman_collection.json
-    type: PostmanCollection
-  - url: collections/lodgify.opencollection.json
-    type: OpenCollection
-  description: Generates a priced quote for a property given dates and guest counts,
-    returning the breakdown of rates, fees, and taxes used to drive bookings and
-    payment links.
-- aid: lodgify:messaging
+  - type: OpenAPI
+    url: openapi/lodgify-bookings-api-openapi.yml
+  - type: Documentation
+    url: https://docs.lodgify.com/reference
+  - type: APIReference
+    url: https://docs.lodgify.com/reference/getallpropertiesasync
+  - type: PostmanCollection
+    url: collections/lodgify.postman_collection.json
+  - type: OpenCollection
+    url: collections/lodgify.opencollection.json
+  - type: Documentation
+    url: https://docs.lodgify.com/reference/ratescalendar
+  - type: APIReference
+    url: https://docs.lodgify.com/reference/ratescalendar
+  - type: APIReference
+    url: https://docs.lodgify.com/reference
+  - type: Documentation
+    url: https://docs.lodgify.com/reference/get_v2-messaging-threadguid
+  - type: APIReference
+    url: https://docs.lodgify.com/reference/get_v2-messaging-threadguid
+  - type: Documentation
+    url: https://docs.lodgify.com/reference/webhooks
+  - type: APIReference
+    url: https://docs.lodgify.com/reference/post_webhooks-v1-subscribe
+- aid: lodgify:lodgify-messaging-api
   name: Lodgify Messaging API
+  description: Guest conversation threads and messages.
+  humanURL: https://docs.lodgify.com/reference
+  baseURL: https://api.lodgify.com/v2
   tags:
   - Messaging
-  - Threads
-  - Guest Communication
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.lodgify.com/reference/get_v2-messaging-threadguid
-  baseURL: https://api.lodgify.com/v2
   properties:
-  - url: https://docs.lodgify.com/reference/get_v2-messaging-threadguid
-    type: Documentation
-  - url: https://docs.lodgify.com/reference/get_v2-messaging-threadguid
-    type: APIReference
-  - url: openapi/lodgify-openapi.yml
-    type: OpenAPI
-  - url: collections/lodgify.postman_collection.json
-    type: PostmanCollection
-  - url: collections/lodgify.opencollection.json
-    type: OpenCollection
-  description: Retrieves a guest messaging thread by its thread GUID (found in booking
-    data) to read the conversation between host and guest.
-- aid: lodgify:webhooks
+  - type: OpenAPI
+    url: openapi/lodgify-messaging-api-openapi.yml
+  - type: Documentation
+    url: https://docs.lodgify.com/reference
+  - type: APIReference
+    url: https://docs.lodgify.com/reference/getallpropertiesasync
+  - type: PostmanCollection
+    url: collections/lodgify.postman_collection.json
+  - type: OpenCollection
+    url: collections/lodgify.opencollection.json
+  - type: Documentation
+    url: https://docs.lodgify.com/reference/ratescalendar
+  - type: APIReference
+    url: https://docs.lodgify.com/reference/ratescalendar
+  - type: APIReference
+    url: https://docs.lodgify.com/reference
+  - type: Documentation
+    url: https://docs.lodgify.com/reference/get_v2-messaging-threadguid
+  - type: APIReference
+    url: https://docs.lodgify.com/reference/get_v2-messaging-threadguid
+  - type: Documentation
+    url: https://docs.lodgify.com/reference/webhooks
+  - type: APIReference
+    url: https://docs.lodgify.com/reference/post_webhooks-v1-subscribe
+- aid: lodgify:lodgify-properties-api
+  name: Lodgify Properties API
+  description: Vacation rental properties and their room types.
+  humanURL: https://docs.lodgify.com/reference
+  baseURL: https://api.lodgify.com/v2
+  tags:
+  - Properties
+  properties:
+  - type: OpenAPI
+    url: openapi/lodgify-properties-api-openapi.yml
+  - type: Documentation
+    url: https://docs.lodgify.com/reference
+  - type: APIReference
+    url: https://docs.lodgify.com/reference/getallpropertiesasync
+  - type: PostmanCollection
+    url: collections/lodgify.postman_collection.json
+  - type: OpenCollection
+    url: collections/lodgify.opencollection.json
+  - type: Documentation
+    url: https://docs.lodgify.com/reference/ratescalendar
+  - type: APIReference
+    url: https://docs.lodgify.com/reference/ratescalendar
+  - type: APIReference
+    url: https://docs.lodgify.com/reference
+  - type: Documentation
+    url: https://docs.lodgify.com/reference/get_v2-messaging-threadguid
+  - type: APIReference
+    url: https://docs.lodgify.com/reference/get_v2-messaging-threadguid
+  - type: Documentation
+    url: https://docs.lodgify.com/reference/webhooks
+  - type: APIReference
+    url: https://docs.lodgify.com/reference/post_webhooks-v1-subscribe
+- aid: lodgify:lodgify-rates-quotes-api
+  name: Lodgify Rates & Quotes API
+  description: Daily rates, rate settings, and priced stay quotes.
+  humanURL: https://docs.lodgify.com/reference
+  baseURL: https://api.lodgify.com/v2
+  tags:
+  - Rates & Quotes
+  properties:
+  - type: OpenAPI
+    url: openapi/lodgify-rates-quotes-api-openapi.yml
+  - type: Documentation
+    url: https://docs.lodgify.com/reference
+  - type: APIReference
+    url: https://docs.lodgify.com/reference/getallpropertiesasync
+  - type: PostmanCollection
+    url: collections/lodgify.postman_collection.json
+  - type: OpenCollection
+    url: collections/lodgify.opencollection.json
+  - type: Documentation
+    url: https://docs.lodgify.com/reference/ratescalendar
+  - type: APIReference
+    url: https://docs.lodgify.com/reference/ratescalendar
+  - type: APIReference
+    url: https://docs.lodgify.com/reference
+  - type: Documentation
+    url: https://docs.lodgify.com/reference/get_v2-messaging-threadguid
+  - type: APIReference
+    url: https://docs.lodgify.com/reference/get_v2-messaging-threadguid
+  - type: Documentation
+    url: https://docs.lodgify.com/reference/webhooks
+  - type: APIReference
+    url: https://docs.lodgify.com/reference/post_webhooks-v1-subscribe
+- aid: lodgify:lodgify-webhooks-api
   name: Lodgify Webhooks API
+  description: Event subscriptions for real-time notifications.
+  humanURL: https://docs.lodgify.com/reference
+  baseURL: https://api.lodgify.com/v2
   tags:
   - Webhooks
-  - Events
-  - Notifications
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.lodgify.com/reference/webhooks
-  baseURL: https://api.lodgify.com/webhooks/v1
   properties:
-  - url: https://docs.lodgify.com/reference/webhooks
-    type: Documentation
-  - url: https://docs.lodgify.com/reference/post_webhooks-v1-subscribe
-    type: APIReference
-  - url: openapi/lodgify-openapi.yml
-    type: OpenAPI
-  - url: collections/lodgify.postman_collection.json
-    type: PostmanCollection
-  - url: collections/lodgify.opencollection.json
-    type: OpenCollection
-  description: Subscribes and unsubscribes target URLs to platform events (such as
-    booking and rate changes) and lists active webhook subscriptions for real-time
-    notifications.
+  - type: OpenAPI
+    url: openapi/lodgify-webhooks-api-openapi.yml
+  - type: Documentation
+    url: https://docs.lodgify.com/reference
+  - type: APIReference
+    url: https://docs.lodgify.com/reference/getallpropertiesasync
+  - type: PostmanCollection
+    url: collections/lodgify.postman_collection.json
+  - type: OpenCollection
+    url: collections/lodgify.opencollection.json
+  - type: Documentation
+    url: https://docs.lodgify.com/reference/ratescalendar
+  - type: APIReference
+    url: https://docs.lodgify.com/reference/ratescalendar
+  - type: APIReference
+    url: https://docs.lodgify.com/reference
+  - type: Documentation
+    url: https://docs.lodgify.com/reference/get_v2-messaging-threadguid
+  - type: APIReference
+    url: https://docs.lodgify.com/reference/get_v2-messaging-threadguid
+  - type: Documentation
+    url: https://docs.lodgify.com/reference/webhooks
+  - type: APIReference
+    url: https://docs.lodgify.com/reference/post_webhooks-v1-subscribe
 common:
 - type: AgenticAccess
   url: agentic-access/lodgify-agentic-access.yml
