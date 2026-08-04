@@ -1,0 +1,24 @@
+{
+  "provider": "lodgify",
+  "sources": [
+    "lodgify-availability-api-openapi.yml",
+    "lodgify-bookings-api-openapi.yml",
+    "lodgify-messaging-api-openapi.yml",
+    "lodgify-properties-api-openapi.yml",
+    "lodgify-rates-quotes-api-openapi.yml",
+    "lodgify-webhooks-api-openapi.yml"
+  ],
+  "outputs": [
+    "lodgify-availability-api-openapi.yml",
+    "lodgify-bookings-api-openapi.yml",
+    "lodgify-messaging-api-openapi.yml",
+    "lodgify-properties-api-openapi.yml",
+    "lodgify-rates-quotes-api-openapi.yml",
+    "lodgify-webhooks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
