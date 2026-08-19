@@ -1,0 +1,85 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lodgify Public Availability Webhooks API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-ApiKey",
+      "value": "{{X-ApiKey}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List webhook subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lodgify.com/webhooks/v1/list"
+          },
+          "docs": "Returns all active webhook subscriptions for the account."
+        },
+        {
+          "info": {
+            "name": "Subscribe to a webhook event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lodgify.com/webhooks/v1/subscribe",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Subscribes a unique target URL to a given event. When the event occurs the target URL is called with event-related information and should return a 200 OK response."
+        },
+        {
+          "info": {
+            "name": "Unsubscribe from a webhook event",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.lodgify.com/webhooks/v1/unsubscribe",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Removes a webhook subscription by its identifier."
+        },
+        {
+          "info": {
+            "name": "Delete a webhook subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.lodgify.com/webhooks/v1/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes a specific webhook subscription by its identifier."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

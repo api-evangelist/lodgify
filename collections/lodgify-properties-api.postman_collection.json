@@ -1,0 +1,576 @@
+{
+  "item": [
+    {
+      "id": "37438ca5-616c-425c-b99c-c9c9edac47ca",
+      "name": "Properties",
+      "description": {
+        "content": "Vacation rental properties and their room types.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "527d1791-3eb1-49e5-8e6f-83bc22c289e4",
+          "name": "List properties",
+          "request": {
+            "name": "List properties",
+            "description": {
+              "content": "Returns a paged list of all properties on the account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "properties"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "1-based page number."
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "50",
+                  "description": "Number of items per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "includeCount",
+                  "value": "<boolean>",
+                  "description": "Whether to include the total count in the response."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8810e338-7e3f-4502-9191-c7a44e7e3fff",
+              "name": "A paged list of properties.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "properties"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "size",
+                      "value": "50"
+                    },
+                    {
+                      "key": "includeCount",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ApiKey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 2542,\n  \"items\": [\n    {\n      \"id\": 5907,\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"latitude\": 7301.4986784978455,\n      \"longitude\": 7666.943843509475,\n      \"address\": \"string\",\n      \"city\": \"string\",\n      \"country_code\": \"string\",\n      \"currency_code\": \"string\",\n      \"rooms\": [\n        {\n          \"id\": 2882,\n          \"name\": \"string\",\n          \"max_people\": 3398,\n          \"bedrooms\": 651,\n          \"bathrooms\": 1932.8507556718844\n        },\n        {\n          \"id\": 8153,\n          \"name\": \"string\",\n          \"max_people\": 7892,\n          \"bedrooms\": 1183,\n          \"bathrooms\": 6719.364511298692\n        }\n      ]\n    },\n    {\n      \"id\": 972,\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"latitude\": 6560.898354222611,\n      \"longitude\": 9765.869984269408,\n      \"address\": \"string\",\n      \"city\": \"string\",\n      \"country_code\": \"string\",\n      \"currency_code\": \"string\",\n      \"rooms\": [\n        {\n          \"id\": 2909,\n          \"name\": \"string\",\n          \"max_people\": 8636,\n          \"bedrooms\": 6934,\n          \"bathrooms\": 5095.299176036074\n        },\n        {\n          \"id\": 4482,\n          \"name\": \"string\",\n          \"max_people\": 1413,\n          \"bedrooms\": 9012,\n          \"bathrooms\": 1727.2010194196741\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "355504ef-544c-4263-a33f-ca274f04efe3",
+              "name": "Missing or invalid X-ApiKey.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "properties"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "size",
+                      "value": "50"
+                    },
+                    {
+                      "key": "includeCount",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ApiKey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "470f2fbc-625a-4039-bf3e-693728654274",
+          "name": "Get a property",
+          "request": {
+            "name": "Get a property",
+            "description": {
+              "content": "Returns the details of a single property by its identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "properties",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Property identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d14f2e8e-f147-4038-bdc8-703a01f5e852",
+              "name": "The requested property.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "properties",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Property identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ApiKey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 477,\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"latitude\": 4663.921843006971,\n  \"longitude\": 3918.4174823827343,\n  \"address\": \"string\",\n  \"city\": \"string\",\n  \"country_code\": \"string\",\n  \"currency_code\": \"string\",\n  \"rooms\": [\n    {\n      \"id\": 7908,\n      \"name\": \"string\",\n      \"max_people\": 9263,\n      \"bedrooms\": 6670,\n      \"bathrooms\": 1707.9643527858045\n    },\n    {\n      \"id\": 4647,\n      \"name\": \"string\",\n      \"max_people\": 476,\n      \"bedrooms\": 6263,\n      \"bathrooms\": 9658.66974876194\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4035b528-61aa-4fca-9bc2-0f28e150e62a",
+              "name": "Missing or invalid X-ApiKey.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "properties",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Property identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ApiKey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d027f2bf-0875-458b-b17c-8ea3d0870463",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "properties",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Property identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ApiKey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7715ce77-b7bb-41af-9c8c-142506b66f74",
+          "name": "List property room types",
+          "request": {
+            "name": "List property room types",
+            "description": {
+              "content": "Returns the room types configured for a property.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "properties",
+                ":id",
+                "rooms"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Property identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e2ad640d-7012-4308-9779-9164311e181e",
+              "name": "A list of room types for the property.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "properties",
+                    ":id",
+                    "rooms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Property identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ApiKey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 748,\n    \"name\": \"string\",\n    \"max_people\": 9483,\n    \"bedrooms\": 629,\n    \"bathrooms\": 8278.322490186532\n  },\n  {\n    \"id\": 4099,\n    \"name\": \"string\",\n    \"max_people\": 3090,\n    \"bedrooms\": 3858,\n    \"bathrooms\": 9762.042342343324\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0748a62d-b857-4465-9fe8-a337a5c96c4d",
+              "name": "Missing or invalid X-ApiKey.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "properties",
+                    ":id",
+                    "rooms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Property identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ApiKey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.lodgify.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-ApiKey"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c43afab3-5f61-4637-835e-42eb01e3b684",
+    "name": "Lodgify Public Availability Properties API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Lodgify Public API is a REST interface for the Lodgify vacation rental platform. It exposes properties and room types, availability calendars, daily rates, rate settings, priced quotes, the full booking and reservation lifecycle, guest messaging threads, and webhook subscriptions. The API spans two versions (v1 and v2) under the host https://api.lodgify.com and is authenticated with an X-ApiKey request header.\n\nContact Support:\n Name: Lodgify Support",
+      "type": "text/plain"
+    }
+  }
+}

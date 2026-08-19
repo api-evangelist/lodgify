@@ -1,0 +1,231 @@
+{
+  "item": [
+    {
+      "id": "ba60147c-b8dc-4df2-81bb-df9df503766d",
+      "name": "Availability",
+      "description": {
+        "content": "Availability calendars for properties and room types.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "62a797ff-44c1-4ad0-9053-e1b9933dac76",
+          "name": "Get property availability",
+          "request": {
+            "name": "Get property availability",
+            "description": {
+              "content": "Returns the availability calendar for a property over a date range, listing available and booked periods per room type.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "availability",
+                ":propertyId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<date>",
+                  "description": "Start date (YYYY-MM-DD)."
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<date>",
+                  "description": "End date (YYYY-MM-DD)."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "propertyId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e4914f31-c002-469d-b3b4-0e7b68863d36",
+              "name": "Availability periods for the property.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "availability",
+                    ":propertyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "propertyId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ApiKey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"room_type_id\": 2762,\n    \"start\": \"2002-08-30\",\n    \"end\": \"1959-06-14\",\n    \"available\": 3473,\n    \"closed_period\": false,\n    \"bookings\": [\n      {\n        \"id\": 6871,\n        \"status\": \"string\"\n      },\n      {\n        \"id\": 3703,\n        \"status\": \"string\"\n      }\n    ]\n  },\n  {\n    \"room_type_id\": 2030,\n    \"start\": \"1991-01-05\",\n    \"end\": \"2004-05-22\",\n    \"available\": 5022,\n    \"closed_period\": true,\n    \"bookings\": [\n      {\n        \"id\": 6742,\n        \"status\": \"string\"\n      },\n      {\n        \"id\": 4818,\n        \"status\": \"string\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4bce2efb-7e37-49c8-8fc6-c6de027dda2f",
+              "name": "Missing or invalid X-ApiKey.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "availability",
+                    ":propertyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "propertyId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ApiKey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.lodgify.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-ApiKey"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "dc64f310-4fec-41d2-8c0e-e6f4b14ac4dc",
+    "name": "Lodgify Public Availability API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Lodgify Public API is a REST interface for the Lodgify vacation rental platform. It exposes properties and room types, availability calendars, daily rates, rate settings, priced quotes, the full booking and reservation lifecycle, guest messaging threads, and webhook subscriptions. The API spans two versions (v1 and v2) under the host https://api.lodgify.com and is authenticated with an X-ApiKey request header.\n\nContact Support:\n Name: Lodgify Support",
+      "type": "text/plain"
+    }
+  }
+}

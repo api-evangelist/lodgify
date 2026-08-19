@@ -1,0 +1,253 @@
+{
+  "item": [
+    {
+      "id": "082fc04a-f896-4394-85a3-fe374ea66fa0",
+      "name": "Messaging",
+      "description": {
+        "content": "Guest conversation threads and messages.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "78a34b15-5ad4-48ac-a134-10581526c924",
+          "name": "Get a messaging thread",
+          "request": {
+            "name": "Get a messaging thread",
+            "description": {
+              "content": "Returns a guest conversation thread and its messages by thread GUID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "messaging",
+                ":threadGuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "threadGuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "382a06f2-11cb-4b50-b291-61c700eb5d96",
+              "name": "The conversation thread.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "messaging",
+                    ":threadGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "threadGuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ApiKey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"guid\": \"0e417510-4c6a-b6fb-c79a-ec80fd43d135\",\n  \"subject\": \"string\",\n  \"is_read\": true,\n  \"is_archived\": false,\n  \"messages\": [\n    {\n      \"id\": 4344,\n      \"type\": \"string\",\n      \"subject\": \"string\",\n      \"message\": \"string\",\n      \"created_at\": \"1984-06-22T11:07:25.550Z\"\n    },\n    {\n      \"id\": 6378,\n      \"type\": \"string\",\n      \"subject\": \"string\",\n      \"message\": \"string\",\n      \"created_at\": \"2018-10-10T02:45:38.368Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "282a1381-a551-43c1-a0a1-5a8ad47d1a73",
+              "name": "Missing or invalid X-ApiKey.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "messaging",
+                    ":threadGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "threadGuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ApiKey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6052a6ca-bf6a-4c09-ac55-65dee9d6b5bf",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "messaging",
+                    ":threadGuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "threadGuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ApiKey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.lodgify.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-ApiKey"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0a0e79c3-fb76-4d04-9356-d3c9a0b92e0b",
+    "name": "Lodgify Public Availability Messaging API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Lodgify Public API is a REST interface for the Lodgify vacation rental platform. It exposes properties and room types, availability calendars, daily rates, rate settings, priced quotes, the full booking and reservation lifecycle, guest messaging threads, and webhook subscriptions. The API spans two versions (v1 and v2) under the host https://api.lodgify.com and is authenticated with an X-ApiKey request header.\n\nContact Support:\n Name: Lodgify Support",
+      "type": "text/plain"
+    }
+  }
+}

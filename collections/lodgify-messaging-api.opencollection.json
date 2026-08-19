@@ -1,0 +1,44 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lodgify Public Availability Messaging API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-ApiKey",
+      "value": "{{X-ApiKey}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Messaging",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a messaging thread",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lodgify.com/v2/messaging/:threadGuid",
+            "params": [
+              {
+                "name": "threadGuid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns a guest conversation thread and its messages by thread GUID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

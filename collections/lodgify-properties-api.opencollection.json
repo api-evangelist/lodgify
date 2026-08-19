@@ -1,0 +1,95 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lodgify Public Availability Properties API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-ApiKey",
+      "value": "{{X-ApiKey}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Properties",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List properties",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lodgify.com/v2/properties",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "1-based page number."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page."
+              },
+              {
+                "name": "includeCount",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include the total count in the response."
+              }
+            ]
+          },
+          "docs": "Returns a paged list of all properties on the account."
+        },
+        {
+          "info": {
+            "name": "Get a property",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lodgify.com/v2/properties/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Property identifier."
+              }
+            ]
+          },
+          "docs": "Returns the details of a single property by its identifier."
+        },
+        {
+          "info": {
+            "name": "List property room types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lodgify.com/v2/properties/:id/rooms",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Property identifier."
+              }
+            ]
+          },
+          "docs": "Returns the room types configured for a property."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

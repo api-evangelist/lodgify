@@ -1,0 +1,235 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lodgify Public Availability Bookings API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-ApiKey",
+      "value": "{{X-ApiKey}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Bookings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List bookings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lodgify.com/v2/reservations/bookings",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "1-based page number."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page."
+              },
+              {
+                "name": "stayFilter",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a paged list of bookings filtered by status, date, and channel."
+        },
+        {
+          "info": {
+            "name": "Create a booking",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lodgify.com/v2/reservations/bookings",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new booking, optionally upgrading an existing enquiry."
+        },
+        {
+          "info": {
+            "name": "Get a booking",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lodgify.com/v2/reservations/bookings/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Booking identifier."
+              }
+            ]
+          },
+          "docs": "Returns the details of a single booking by its identifier."
+        },
+        {
+          "info": {
+            "name": "Update a booking",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.lodgify.com/v2/reservations/bookings/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Booking identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing booking."
+        },
+        {
+          "info": {
+            "name": "Delete a booking",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.lodgify.com/v2/reservations/bookings/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Booking identifier."
+              }
+            ]
+          },
+          "docs": "Deletes a booking."
+        },
+        {
+          "info": {
+            "name": "Get a booking payment link",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lodgify.com/v2/reservations/bookings/:id/quote/paymentLink",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Booking identifier."
+              }
+            ]
+          },
+          "docs": "Returns the current payment link for a booking."
+        },
+        {
+          "info": {
+            "name": "Create a booking payment link",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lodgify.com/v2/reservations/bookings/:id/quote/paymentLink",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Booking identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a payment link for a booking."
+        },
+        {
+          "info": {
+            "name": "Update key codes",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.lodgify.com/v2/reservations/bookings/:id/keyCodes",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Booking identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sets or updates the key codes associated with a booking."
+        },
+        {
+          "info": {
+            "name": "Check in a booking",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.lodgify.com/v2/reservations/bookings/:id/checkin",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Booking identifier."
+              }
+            ]
+          },
+          "docs": "Marks a booking as checked in."
+        },
+        {
+          "info": {
+            "name": "Check out a booking",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.lodgify.com/v2/reservations/bookings/:id/checkout",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Booking identifier."
+              }
+            ]
+          },
+          "docs": "Marks a booking as checked out."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

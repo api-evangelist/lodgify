@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lodgify Public Availability API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-ApiKey",
+      "value": "{{X-ApiKey}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Availability",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get property availability",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lodgify.com/v2/availability/:propertyId",
+            "params": [
+              {
+                "name": "propertyId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Start date (YYYY-MM-DD)."
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "End date (YYYY-MM-DD)."
+              }
+            ]
+          },
+          "docs": "Returns the availability calendar for a property over a date range, listing available and booked periods per room type."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,132 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lodgify Public Availability Rates & Quotes API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-ApiKey",
+      "value": "{{X-ApiKey}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Rates & Quotes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get daily rates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lodgify.com/v2/rates/calendar",
+            "params": [
+              {
+                "name": "HouseId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "RoomTypeId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "StartDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "EndDate",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the daily rates calendar for the requested room types, by roomTypeId or houseId, over a date range."
+        },
+        {
+          "info": {
+            "name": "Get rate settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lodgify.com/v2/rates/settings",
+            "params": [
+              {
+                "name": "HouseId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the rate settings for the given houseId."
+        },
+        {
+          "info": {
+            "name": "Update rates",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.lodgify.com/v1/rates/savewithoutavailability",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Saves or updates rates for room types without changing availability."
+        },
+        {
+          "info": {
+            "name": "Get a quote",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.lodgify.com/v2/quote/:propertyId",
+            "params": [
+              {
+                "name": "propertyId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Start date (YYYY-MM-DD)."
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "End date (YYYY-MM-DD)."
+              },
+              {
+                "name": "roomTypes[0].Id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "guest_breakdown[adults]",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a priced quote for a stay at a property, including the room rate, fees, taxes, and any applicable discounts."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

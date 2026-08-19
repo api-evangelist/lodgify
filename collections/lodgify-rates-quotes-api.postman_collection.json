@@ -1,0 +1,735 @@
+{
+  "item": [
+    {
+      "id": "6303e4ae-4f6a-4aa6-a08d-645b0fa2c959",
+      "name": "Rates & Quotes",
+      "description": {
+        "content": "Daily rates, rate settings, and priced stay quotes.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4250b4a3-2465-475d-9584-05a4c2a2f076",
+          "name": "Get daily rates",
+          "request": {
+            "name": "Get daily rates",
+            "description": {
+              "content": "Returns the daily rates calendar for the requested room types, by roomTypeId or houseId, over a date range.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "rates",
+                "calendar"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "HouseId",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "RoomTypeId",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "StartDate",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "EndDate",
+                  "value": "<date>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6e2e6200-9a86-43a2-9d46-c5e9b7ea9e42",
+              "name": "Daily rate entries.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "rates",
+                    "calendar"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "HouseId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "RoomTypeId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "StartDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "EndDate",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ApiKey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"room_type_id\": 6160,\n    \"date\": \"1957-03-02\",\n    \"price_per_day\": 259.3677459593635,\n    \"min_stay\": 6969,\n    \"max_stay\": 3341,\n    \"currency_code\": \"string\"\n  },\n  {\n    \"room_type_id\": 269,\n    \"date\": \"1975-03-03\",\n    \"price_per_day\": 794.7816365312,\n    \"min_stay\": 975,\n    \"max_stay\": 636,\n    \"currency_code\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0912eb83-5773-45f5-8b28-def3e39a5837",
+              "name": "Missing or invalid X-ApiKey.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "rates",
+                    "calendar"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "HouseId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "RoomTypeId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "StartDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "EndDate",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ApiKey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "90cbc9a0-6cbe-4ad8-b3ce-27f120a5017f",
+          "name": "Get rate settings",
+          "request": {
+            "name": "Get rate settings",
+            "description": {
+              "content": "Returns the rate settings for the given houseId.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "rates",
+                "settings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "HouseId",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d493f9a8-a05e-4120-a3a2-f519fba05873",
+              "name": "Rate settings for the property.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "rates",
+                    "settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "HouseId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ApiKey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"house_id\": 4443,\n  \"currency_code\": \"string\",\n  \"check_in_time\": \"string\",\n  \"check_out_time\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1bd74e08-d61e-446c-a3c5-15be0ca73f66",
+              "name": "Missing or invalid X-ApiKey.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "rates",
+                    "settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "HouseId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ApiKey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f3df2802-745a-417e-a10a-ae86e8d4783a",
+          "name": "Update rates",
+          "request": {
+            "name": "Update rates",
+            "description": {
+              "content": "Saves or updates rates for room types without changing availability.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "rates",
+                "savewithoutavailability"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"property_id\": \"<integer>\",\n  \"rates\": [\n    {\n      \"room_type_id\": \"<integer>\",\n      \"start_date\": \"<date>\",\n      \"end_date\": \"<date>\",\n      \"price_per_day\": \"<double>\",\n      \"min_stay\": \"<integer>\"\n    },\n    {\n      \"room_type_id\": \"<integer>\",\n      \"start_date\": \"<date>\",\n      \"end_date\": \"<date>\",\n      \"price_per_day\": \"<double>\",\n      \"min_stay\": \"<integer>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5b410806-071b-43cf-a553-60e3312e5f51",
+              "name": "Rates updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "rates",
+                    "savewithoutavailability"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ApiKey",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"property_id\": \"<integer>\",\n  \"rates\": [\n    {\n      \"room_type_id\": \"<integer>\",\n      \"start_date\": \"<date>\",\n      \"end_date\": \"<date>\",\n      \"price_per_day\": \"<double>\",\n      \"min_stay\": \"<integer>\"\n    },\n    {\n      \"room_type_id\": \"<integer>\",\n      \"start_date\": \"<date>\",\n      \"end_date\": \"<date>\",\n      \"price_per_day\": \"<double>\",\n      \"min_stay\": \"<integer>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "49f566ea-be04-42a8-b284-ee96266fdf8c",
+              "name": "Missing or invalid X-ApiKey.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "rates",
+                    "savewithoutavailability"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ApiKey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"property_id\": \"<integer>\",\n  \"rates\": [\n    {\n      \"room_type_id\": \"<integer>\",\n      \"start_date\": \"<date>\",\n      \"end_date\": \"<date>\",\n      \"price_per_day\": \"<double>\",\n      \"min_stay\": \"<integer>\"\n    },\n    {\n      \"room_type_id\": \"<integer>\",\n      \"start_date\": \"<date>\",\n      \"end_date\": \"<date>\",\n      \"price_per_day\": \"<double>\",\n      \"min_stay\": \"<integer>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a5f33c83-500d-4309-a75b-e538e456b6ab",
+          "name": "Get a quote",
+          "request": {
+            "name": "Get a quote",
+            "description": {
+              "content": "Returns a priced quote for a stay at a property, including the room rate, fees, taxes, and any applicable discounts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "quote",
+                ":propertyId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<date>",
+                  "description": "Start date (YYYY-MM-DD)."
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<date>",
+                  "description": "End date (YYYY-MM-DD)."
+                },
+                {
+                  "disabled": false,
+                  "key": "roomTypes[0].Id",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "guest_breakdown[adults]",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "propertyId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "815f3a58-bbbf-4291-ac5d-63f7380594c1",
+              "name": "A priced quote for the requested stay.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "quote",
+                    ":propertyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "roomTypes[0].Id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "guest_breakdown[adults]",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "propertyId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ApiKey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total_including_vat\": 9467.642093816012,\n  \"currency_code\": \"string\",\n  \"room_types\": [\n    {\n      \"id\": 4216,\n      \"subtotal\": 7411.313127929984\n    },\n    {\n      \"id\": 579,\n      \"subtotal\": 4911.120799843592\n    }\n  ],\n  \"amenities_subtotal\": 3717.510463639501,\n  \"fees_subtotal\": 2779.620695712379,\n  \"taxes_subtotal\": 4406.8037094134925\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a9797a9d-4e21-4c25-a475-490b4e915965",
+              "name": "Missing or invalid X-ApiKey.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "quote",
+                    ":propertyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "roomTypes[0].Id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "guest_breakdown[adults]",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "propertyId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-ApiKey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.lodgify.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-ApiKey"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "df753db2-3598-4cd4-b36f-9af7a3d9c3cd",
+    "name": "Lodgify Public Availability Rates & Quotes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Lodgify Public API is a REST interface for the Lodgify vacation rental platform. It exposes properties and room types, availability calendars, daily rates, rate settings, priced quotes, the full booking and reservation lifecycle, guest messaging threads, and webhook subscriptions. The API spans two versions (v1 and v2) under the host https://api.lodgify.com and is authenticated with an X-ApiKey request header.\n\nContact Support:\n Name: Lodgify Support",
+      "type": "text/plain"
+    }
+  }
+}
