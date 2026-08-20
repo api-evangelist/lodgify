@@ -198,6 +198,8 @@ apis:
   humanURL: https://docs.lodgify.com/reference
   baseURL: https://api.lodgify.com/v2
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
