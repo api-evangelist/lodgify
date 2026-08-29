@@ -8,6 +8,18 @@ description: Lodgify is all-in-one vacation rental software for property owners 
   https://api.lodgify.com for managing properties, availability, rates and quotes,
   bookings and reservations, guest messaging, and webhook subscriptions, authenticated
   with an X-ApiKey header.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
