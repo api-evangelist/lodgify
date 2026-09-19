@@ -35,6 +35,12 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/lodgify.png
 tags:
+- Vacation Rentals
+- Property Management
+- Booking
+- Channel Manager
+- Travel
+tags_raw:
 - Vacation Rental
 - Property Management
 - Booking
@@ -82,6 +88,8 @@ apis:
   humanURL: https://docs.lodgify.com/reference
   baseURL: https://api.lodgify.com/v2
   tags:
+  - Booking
+  tags_raw:
   - Bookings
   properties:
   - type: OpenAPI
