@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Lodgify Public Availability Rates & Quotes API
+  title: Lodgify Public Rates & Quotes API
   description: The Lodgify Public API is a REST interface for the Lodgify vacation rental platform. It exposes properties and room types, availability calendars, daily rates, rate settings, priced quotes, the full booking and reservation lifecycle, guest messaging threads, and webhook subscriptions. The API spans two versions (v1 and v2) under the host https://api.lodgify.com and is authenticated with an X-ApiKey request header.
   termsOfService: https://www.lodgify.com/legal-stuff/
   contact:
@@ -133,6 +133,38 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    RateSettings:
+      type: object
+      properties:
+        house_id:
+          type: integer
+          format: int32
+        currency_code:
+          type: string
+        check_in_time:
+          type: string
+        check_out_time:
+          type: string
+    DailyRate:
+      type: object
+      properties:
+        room_type_id:
+          type: integer
+          format: int32
+        date:
+          type: string
+          format: date
+        price_per_day:
+          type: number
+          format: double
+        min_stay:
+          type: integer
+          format: int32
+        max_stay:
+          type: integer
+          format: int32
+        currency_code:
+          type: string
     Error:
       type: object
       properties:
@@ -194,46 +226,7 @@ components:
               min_stay:
                 type: integer
                 format: int32
-    RateSettings:
-      type: object
-      properties:
-        house_id:
-          type: integer
-          format: int32
-        currency_code:
-          type: string
-        check_in_time:
-          type: string
-        check_out_time:
-          type: string
-    DailyRate:
-      type: object
-      properties:
-        room_type_id:
-          type: integer
-          format: int32
-        date:
-          type: string
-          format: date
-        price_per_day:
-          type: number
-          format: double
-        min_stay:
-          type: integer
-          format: int32
-        max_stay:
-          type: integer
-          format: int32
-        currency_code:
-          type: string
   parameters:
-    From:
-      name: from
-      in: query
-      schema:
-        type: string
-        format: date
-      description: Start date (YYYY-MM-DD).
     To:
       name: to
       in: query
@@ -241,6 +234,13 @@ components:
         type: string
         format: date
       description: End date (YYYY-MM-DD).
+    From:
+      name: from
+      in: query
+      schema:
+        type: string
+        format: date
+      description: Start date (YYYY-MM-DD).
   responses:
     Unauthorized:
       description: Missing or invalid X-ApiKey.

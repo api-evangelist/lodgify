@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Lodgify Public Availability Webhooks API
+  title: Lodgify Public Webhooks API
   description: The Lodgify Public API is a REST interface for the Lodgify vacation rental platform. It exposes properties and room types, availability calendars, daily rates, rate settings, priced quotes, the full booking and reservation lifecycle, guest messaging threads, and webhook subscriptions. The API spans two versions (v1 and v2) under the host https://api.lodgify.com and is authenticated with an X-ApiKey request header.
   termsOfService: https://www.lodgify.com/legal-stuff/
   contact:
@@ -95,24 +95,20 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid X-ApiKey.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    Webhook:
-      type: object
-      properties:
-        id:
-          type: string
-        event:
-          type: string
-        target_url:
-          type: string
-          format: uri
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
     WebhookSubscribe:
       type: object
       required:
@@ -134,19 +130,23 @@ components:
         id:
           type: string
           description: Identifier of the subscription to remove.
-  responses:
-    Unauthorized:
-      description: Missing or invalid X-ApiKey.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        event:
+          type: string
+        target_url:
+          type: string
+          format: uri
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Lodgify Public Availability Properties API
+  title: Lodgify Public Properties API
   description: The Lodgify Public API is a REST interface for the Lodgify vacation rental platform. It exposes properties and room types, availability calendars, daily rates, rate settings, priced quotes, the full booking and reservation lifecycle, guest messaging threads, and webhook subscriptions. The API spans two versions (v1 and v2) under the host https://api.lodgify.com and is authenticated with an X-ApiKey request header.
   termsOfService: https://www.lodgify.com/legal-stuff/
   contact:
@@ -82,6 +82,30 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    Room:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        max_people:
+          type: integer
+          format: int32
+        bedrooms:
+          type: integer
+          format: int32
+        bathrooms:
+          type: number
+          format: float
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
     Property:
       type: object
       properties:
@@ -110,30 +134,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Room'
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-    Room:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        name:
-          type: string
-        max_people:
-          type: integer
-          format: int32
-        bedrooms:
-          type: integer
-          format: int32
-        bathrooms:
-          type: number
-          format: float
     PropertyList:
       type: object
       properties:
@@ -144,6 +144,19 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Property'
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid X-ApiKey.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
     PropertyId:
       name: id
@@ -169,19 +182,6 @@ components:
         format: int32
         default: 50
       description: Number of items per page.
-  responses:
-    Unauthorized:
-      description: Missing or invalid X-ApiKey.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
