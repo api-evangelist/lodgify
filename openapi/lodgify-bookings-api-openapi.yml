@@ -211,85 +211,20 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid X-ApiKey.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    Booking:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        property_id:
-          type: integer
-          format: int32
-        status:
-          type: string
-          enum:
-          - Open
-          - Booked
-          - Tentative
-          - Declined
-        arrival:
-          type: string
-          format: date
-        departure:
-          type: string
-          format: date
-        guest:
-          $ref: '#/components/schemas/Guest'
-        total_amount:
-          type: number
-          format: double
-        currency_code:
-          type: string
-        source:
-          type: string
-    Guest:
-      type: object
-      properties:
-        name:
-          type: string
-        email:
-          type: string
-          format: email
-        phone:
-          type: string
-        country_code:
-          type: string
-    PaymentLink:
-      type: object
-      properties:
-        url:
-          type: string
-          format: uri
-        amount:
-          type: number
-          format: double
-        currency:
-          type: string
-    BookingList:
-      type: object
-      properties:
-        count:
-          type: integer
-          format: int32
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Booking'
-    KeyCodes:
-      type: object
-      properties:
-        key_codes:
-          type: array
-          items:
-            type: string
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
     BookingCreate:
       type: object
       required:
@@ -325,6 +260,56 @@ components:
           - Open
           - Booked
           - Tentative
+    Guest:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
+        country_code:
+          type: string
+    KeyCodes:
+      type: object
+      properties:
+        key_codes:
+          type: array
+          items:
+            type: string
+    Booking:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        property_id:
+          type: integer
+          format: int32
+        status:
+          type: string
+          enum:
+          - Open
+          - Booked
+          - Tentative
+          - Declined
+        arrival:
+          type: string
+          format: date
+        departure:
+          type: string
+          format: date
+        guest:
+          $ref: '#/components/schemas/Guest'
+        total_amount:
+          type: number
+          format: double
+        currency_code:
+          type: string
+        source:
+          type: string
     PaymentLinkCreate:
       type: object
       properties:
@@ -335,7 +320,43 @@ components:
           type: string
         description:
           type: string
+    PaymentLink:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+        amount:
+          type: number
+          format: double
+        currency:
+          type: string
+    BookingList:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Booking'
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
   parameters:
+    Size:
+      name: size
+      in: query
+      schema:
+        type: integer
+        format: int32
+        default: 50
+      description: Number of items per page.
     BookingId:
       name: id
       in: path
@@ -352,27 +373,6 @@ components:
         format: int32
         default: 1
       description: 1-based page number.
-    Size:
-      name: size
-      in: query
-      schema:
-        type: integer
-        format: int32
-        default: 50
-      description: Number of items per page.
-  responses:
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid X-ApiKey.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
