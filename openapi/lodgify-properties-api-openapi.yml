@@ -94,31 +94,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-  parameters:
-    PropertyId:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: integer
-        format: int32
-      description: Property identifier.
-    Size:
-      name: size
-      in: query
-      schema:
-        type: integer
-        format: int32
-        default: 50
-      description: Number of items per page.
-    Page:
-      name: page
-      in: query
-      schema:
-        type: integer
-        format: int32
-        default: 1
-      description: 1-based page number.
   schemas:
     Property:
       type: object
@@ -148,13 +123,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Room'
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
     Room:
       type: object
       properties:
@@ -182,6 +150,38 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Property'
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+  parameters:
+    Size:
+      name: size
+      in: query
+      schema:
+        type: integer
+        format: int32
+        default: 50
+      description: Number of items per page.
+    Page:
+      name: page
+      in: query
+      schema:
+        type: integer
+        format: int32
+        default: 1
+      description: 1-based page number.
+    PropertyId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int32
+      description: Property identifier.
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

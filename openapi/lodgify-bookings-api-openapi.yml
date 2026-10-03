@@ -211,20 +211,14 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    Unauthorized:
-      description: Missing or invalid X-ApiKey.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
+    KeyCodes:
+      type: object
+      properties:
+        key_codes:
+          type: array
+          items:
+            type: string
     BookingCreate:
       type: object
       required:
@@ -260,25 +254,44 @@ components:
           - Open
           - Booked
           - Tentative
-    Guest:
+    BookingList:
       type: object
       properties:
-        name:
-          type: string
-        email:
-          type: string
-          format: email
-        phone:
-          type: string
-        country_code:
-          type: string
-    KeyCodes:
-      type: object
-      properties:
-        key_codes:
+        count:
+          type: integer
+          format: int32
+        items:
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/Booking'
+    PaymentLink:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+        amount:
+          type: number
+          format: double
+        currency:
+          type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    PaymentLinkCreate:
+      type: object
+      properties:
+        amount:
+          type: number
+          format: double
+        currency:
+          type: string
+        description:
+          type: string
     Booking:
       type: object
       properties:
@@ -310,43 +323,17 @@ components:
           type: string
         source:
           type: string
-    PaymentLinkCreate:
+    Guest:
       type: object
       properties:
-        amount:
-          type: number
-          format: double
-        currency:
+        name:
           type: string
-        description:
+        email:
           type: string
-    PaymentLink:
-      type: object
-      properties:
-        url:
+          format: email
+        phone:
           type: string
-          format: uri
-        amount:
-          type: number
-          format: double
-        currency:
-          type: string
-    BookingList:
-      type: object
-      properties:
-        count:
-          type: integer
-          format: int32
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Booking'
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
+        country_code:
           type: string
   parameters:
     Size:
@@ -373,6 +360,19 @@ components:
         format: int32
         default: 1
       description: 1-based page number.
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid X-ApiKey.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
