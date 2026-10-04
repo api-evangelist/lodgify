@@ -81,20 +81,41 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    Unauthorized:
-      description: Missing or invalid X-ApiKey.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    Room:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        max_people:
+          type: integer
+          format: int32
+        bedrooms:
+          type: integer
+          format: int32
+        bathrooms:
+          type: number
+          format: float
+    PropertyList:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Property'
     Property:
       type: object
       properties:
@@ -123,40 +144,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Room'
-    Room:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        name:
-          type: string
-        max_people:
-          type: integer
-          format: int32
-        bedrooms:
-          type: integer
-          format: int32
-        bathrooms:
-          type: number
-          format: float
-    PropertyList:
-      type: object
-      properties:
-        count:
-          type: integer
-          format: int32
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Property'
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
   parameters:
     Size:
       name: size
@@ -182,6 +169,19 @@ components:
         type: integer
         format: int32
       description: Property identifier.
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid X-ApiKey.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

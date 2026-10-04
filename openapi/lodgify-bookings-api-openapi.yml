@@ -212,13 +212,44 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    KeyCodes:
+    Booking:
       type: object
       properties:
-        key_codes:
-          type: array
-          items:
-            type: string
+        id:
+          type: integer
+          format: int32
+        property_id:
+          type: integer
+          format: int32
+        status:
+          type: string
+          enum:
+          - Open
+          - Booked
+          - Tentative
+          - Declined
+        arrival:
+          type: string
+          format: date
+        departure:
+          type: string
+          format: date
+        guest:
+          $ref: '#/components/schemas/Guest'
+        total_amount:
+          type: number
+          format: double
+        currency_code:
+          type: string
+        source:
+          type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
     BookingCreate:
       type: object
       required:
@@ -254,75 +285,6 @@ components:
           - Open
           - Booked
           - Tentative
-    BookingList:
-      type: object
-      properties:
-        count:
-          type: integer
-          format: int32
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Booking'
-    PaymentLink:
-      type: object
-      properties:
-        url:
-          type: string
-          format: uri
-        amount:
-          type: number
-          format: double
-        currency:
-          type: string
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-    PaymentLinkCreate:
-      type: object
-      properties:
-        amount:
-          type: number
-          format: double
-        currency:
-          type: string
-        description:
-          type: string
-    Booking:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        property_id:
-          type: integer
-          format: int32
-        status:
-          type: string
-          enum:
-          - Open
-          - Booked
-          - Tentative
-          - Declined
-        arrival:
-          type: string
-          format: date
-        departure:
-          type: string
-          format: date
-        guest:
-          $ref: '#/components/schemas/Guest'
-        total_amount:
-          type: number
-          format: double
-        currency_code:
-          type: string
-        source:
-          type: string
     Guest:
       type: object
       properties:
@@ -335,6 +297,44 @@ components:
           type: string
         country_code:
           type: string
+    PaymentLink:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+        amount:
+          type: number
+          format: double
+        currency:
+          type: string
+    PaymentLinkCreate:
+      type: object
+      properties:
+        amount:
+          type: number
+          format: double
+        currency:
+          type: string
+        description:
+          type: string
+    KeyCodes:
+      type: object
+      properties:
+        key_codes:
+          type: array
+          items:
+            type: string
+    BookingList:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Booking'
   parameters:
     Size:
       name: size

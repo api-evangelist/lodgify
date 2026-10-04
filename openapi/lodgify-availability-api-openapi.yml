@@ -44,21 +44,6 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  parameters:
-    From:
-      name: from
-      in: query
-      schema:
-        type: string
-        format: date
-      description: Start date (YYYY-MM-DD).
-    To:
-      name: to
-      in: query
-      schema:
-        type: string
-        format: date
-      description: End date (YYYY-MM-DD).
   schemas:
     Error:
       type: object
@@ -101,6 +86,21 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+  parameters:
+    To:
+      name: to
+      in: query
+      schema:
+        type: string
+        format: date
+      description: End date (YYYY-MM-DD).
+    From:
+      name: from
+      in: query
+      schema:
+        type: string
+        format: date
+      description: Start date (YYYY-MM-DD).
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

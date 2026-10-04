@@ -133,6 +133,13 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
     Quote:
       type: object
       properties:
@@ -161,6 +168,38 @@ components:
         taxes_subtotal:
           type: number
           format: double
+    DailyRate:
+      type: object
+      properties:
+        room_type_id:
+          type: integer
+          format: int32
+        date:
+          type: string
+          format: date
+        price_per_day:
+          type: number
+          format: double
+        min_stay:
+          type: integer
+          format: int32
+        max_stay:
+          type: integer
+          format: int32
+        currency_code:
+          type: string
+    RateSettings:
+      type: object
+      properties:
+        house_id:
+          type: integer
+          format: int32
+        currency_code:
+          type: string
+        check_in_time:
+          type: string
+        check_out_time:
+          type: string
     RateUpdate:
       type: object
       properties:
@@ -187,53 +226,7 @@ components:
               min_stay:
                 type: integer
                 format: int32
-    RateSettings:
-      type: object
-      properties:
-        house_id:
-          type: integer
-          format: int32
-        currency_code:
-          type: string
-        check_in_time:
-          type: string
-        check_out_time:
-          type: string
-    DailyRate:
-      type: object
-      properties:
-        room_type_id:
-          type: integer
-          format: int32
-        date:
-          type: string
-          format: date
-        price_per_day:
-          type: number
-          format: double
-        min_stay:
-          type: integer
-          format: int32
-        max_stay:
-          type: integer
-          format: int32
-        currency_code:
-          type: string
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
   parameters:
-    From:
-      name: from
-      in: query
-      schema:
-        type: string
-        format: date
-      description: Start date (YYYY-MM-DD).
     To:
       name: to
       in: query
@@ -241,6 +234,13 @@ components:
         type: string
         format: date
       description: End date (YYYY-MM-DD).
+    From:
+      name: from
+      in: query
+      schema:
+        type: string
+        format: date
+      description: Start date (YYYY-MM-DD).
   responses:
     Unauthorized:
       description: Missing or invalid X-ApiKey.
