@@ -34,6 +34,9 @@ accessModel:
   generated: '2026-07-22'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/lodgify.png
+x-docs-platform: readme
+x-docs-platform-confidence: medium
+x-docs-platform-checked: 2026-10-03
 tags:
 - Vacation Rentals
 - Property Management
@@ -247,6 +250,9 @@ apis:
   - type: APIReference
     url: https://docs.lodgify.com/reference/post_webhooks-v1-subscribe
 common:
+- type: CapabilityMap
+  url: capabilities/lodgify-capability-edges.yml
+  name: Lodgify Business Capability Map
 - type: AgenticAccess
   url: agentic-access/lodgify-agentic-access.yml
 - type: DomainSecurity
