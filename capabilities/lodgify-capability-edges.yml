@@ -1,0 +1,35 @@
+slug: lodgify
+provider: Lodgify
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: Webhooks
+  spec_file: lodgify-webhooks-api-openapi.yml
+  capability_id: BC-4270.80
+  capability_id_l1: BC-4270
+  capability_name: Webhook & Event Subscription Management
+  confidence: 0.72
+  evidence: POST /webhooks/v1/subscribe subscribeWebhook "Subscribe to a webhook event"; DELETE /webhooks/v1/unsubscribe
+    "Unsubscribe from a webhook event"
+  reason: Lifecycle management of outbound webhook event subscriptions exposed to API consumers, matching
+    the webhook & event subscription capability explicitly in the frame.
+- tag: Rates & Quotes
+  spec_file: lodgify-rates-quotes-api-openapi.yml
+  capability_id: BC-440.20
+  capability_id_l1: BC-440
+  capability_name: Price List Management
+  confidence: 0.7
+  evidence: GET /v2/rates/calendar getDailyRates "Get daily rates"; POST /v1/rates/savewithoutavailability
+    updateRates "Update rates"; schemas RateSettings, DailyRate
+  reason: Operations read and maintain daily rate tables and rate settings — price list maintenance —
+    with an additional quote endpoint. Mixed quote/pricing surface keeps confidence moderate.
