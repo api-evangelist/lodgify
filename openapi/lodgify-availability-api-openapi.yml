@@ -79,21 +79,7 @@ components:
                 format: int32
               status:
                 type: string
-  responses:
-    Unauthorized:
-      description: Missing or invalid X-ApiKey.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   parameters:
-    To:
-      name: to
-      in: query
-      schema:
-        type: string
-        format: date
-      description: End date (YYYY-MM-DD).
     From:
       name: from
       in: query
@@ -101,6 +87,20 @@ components:
         type: string
         format: date
       description: Start date (YYYY-MM-DD).
+    To:
+      name: to
+      in: query
+      schema:
+        type: string
+        format: date
+      description: End date (YYYY-MM-DD).
+  responses:
+    Unauthorized:
+      description: Missing or invalid X-ApiKey.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

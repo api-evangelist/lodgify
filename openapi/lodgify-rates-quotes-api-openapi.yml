@@ -140,34 +140,32 @@ components:
           type: string
         message:
           type: string
-    Quote:
+    RateUpdate:
       type: object
       properties:
-        total_including_vat:
-          type: number
-          format: double
-        currency_code:
-          type: string
-        room_types:
+        property_id:
+          type: integer
+          format: int32
+        rates:
           type: array
           items:
             type: object
             properties:
-              id:
+              room_type_id:
                 type: integer
                 format: int32
-              subtotal:
+              start_date:
+                type: string
+                format: date
+              end_date:
+                type: string
+                format: date
+              price_per_day:
                 type: number
                 format: double
-        amenities_subtotal:
-          type: number
-          format: double
-        fees_subtotal:
-          type: number
-          format: double
-        taxes_subtotal:
-          type: number
-          format: double
+              min_stay:
+                type: integer
+                format: int32
     DailyRate:
       type: object
       properties:
@@ -200,40 +198,35 @@ components:
           type: string
         check_out_time:
           type: string
-    RateUpdate:
+    Quote:
       type: object
       properties:
-        property_id:
-          type: integer
-          format: int32
-        rates:
+        total_including_vat:
+          type: number
+          format: double
+        currency_code:
+          type: string
+        room_types:
           type: array
           items:
             type: object
             properties:
-              room_type_id:
+              id:
                 type: integer
                 format: int32
-              start_date:
-                type: string
-                format: date
-              end_date:
-                type: string
-                format: date
-              price_per_day:
+              subtotal:
                 type: number
                 format: double
-              min_stay:
-                type: integer
-                format: int32
+        amenities_subtotal:
+          type: number
+          format: double
+        fees_subtotal:
+          type: number
+          format: double
+        taxes_subtotal:
+          type: number
+          format: double
   parameters:
-    To:
-      name: to
-      in: query
-      schema:
-        type: string
-        format: date
-      description: End date (YYYY-MM-DD).
     From:
       name: from
       in: query
@@ -241,6 +234,13 @@ components:
         type: string
         format: date
       description: Start date (YYYY-MM-DD).
+    To:
+      name: to
+      in: query
+      schema:
+        type: string
+        format: date
+      description: End date (YYYY-MM-DD).
   responses:
     Unauthorized:
       description: Missing or invalid X-ApiKey.

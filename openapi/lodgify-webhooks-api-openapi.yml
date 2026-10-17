@@ -103,16 +103,14 @@ components:
           type: string
         message:
           type: string
-    Webhook:
+    WebhookUnsubscribe:
       type: object
+      required:
+      - id
       properties:
         id:
           type: string
-        event:
-          type: string
-        target_url:
-          type: string
-          format: uri
+          description: Identifier of the subscription to remove.
     WebhookSubscribe:
       type: object
       required:
@@ -126,23 +124,25 @@ components:
           type: string
           format: uri
           description: Unique URL called when the event occurs.
-    WebhookUnsubscribe:
+    Webhook:
       type: object
-      required:
-      - id
       properties:
         id:
           type: string
-          description: Identifier of the subscription to remove.
+        event:
+          type: string
+        target_url:
+          type: string
+          format: uri
   responses:
-    NotFound:
-      description: The requested resource was not found.
+    Unauthorized:
+      description: Missing or invalid X-ApiKey.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid X-ApiKey.
+    NotFound:
+      description: The requested resource was not found.
       content:
         application/json:
           schema:

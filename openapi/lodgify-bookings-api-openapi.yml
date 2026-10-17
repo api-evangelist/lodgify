@@ -212,6 +212,23 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    PaymentLinkCreate:
+      type: object
+      properties:
+        amount:
+          type: number
+          format: double
+        currency:
+          type: string
+        description:
+          type: string
     Booking:
       type: object
       properties:
@@ -243,12 +260,45 @@ components:
           type: string
         source:
           type: string
-    Error:
+    BookingList:
       type: object
       properties:
-        code:
+        count:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Booking'
+    KeyCodes:
+      type: object
+      properties:
+        key_codes:
+          type: array
+          items:
+            type: string
+    Guest:
+      type: object
+      properties:
+        name:
           type: string
-        message:
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
+        country_code:
+          type: string
+    PaymentLink:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+        amount:
+          type: number
+          format: double
+        currency:
           type: string
     BookingCreate:
       type: object
@@ -285,56 +335,6 @@ components:
           - Open
           - Booked
           - Tentative
-    Guest:
-      type: object
-      properties:
-        name:
-          type: string
-        email:
-          type: string
-          format: email
-        phone:
-          type: string
-        country_code:
-          type: string
-    PaymentLink:
-      type: object
-      properties:
-        url:
-          type: string
-          format: uri
-        amount:
-          type: number
-          format: double
-        currency:
-          type: string
-    PaymentLinkCreate:
-      type: object
-      properties:
-        amount:
-          type: number
-          format: double
-        currency:
-          type: string
-        description:
-          type: string
-    KeyCodes:
-      type: object
-      properties:
-        key_codes:
-          type: array
-          items:
-            type: string
-    BookingList:
-      type: object
-      properties:
-        count:
-          type: integer
-          format: int32
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Booking'
   parameters:
     Size:
       name: size
@@ -344,14 +344,6 @@ components:
         format: int32
         default: 50
       description: Number of items per page.
-    BookingId:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: integer
-        format: int32
-      description: Booking identifier.
     Page:
       name: page
       in: query
@@ -360,15 +352,23 @@ components:
         format: int32
         default: 1
       description: 1-based page number.
+    BookingId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int32
+      description: Booking identifier.
   responses:
-    NotFound:
-      description: The requested resource was not found.
+    Unauthorized:
+      description: Missing or invalid X-ApiKey.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid X-ApiKey.
+    NotFound:
+      description: The requested resource was not found.
       content:
         application/json:
           schema:
