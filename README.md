@@ -1,4 +1,4 @@
-# Lodgify (lodgify)
+# Lodgify
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,161 +66,126 @@
 
 Lodgify is all-in-one vacation rental software for property owners and managers, providing a website builder, booking engine, channel manager, and property management system. The Lodgify Public API (v1 and v2) exposes a REST interface at https://api.lodgify.com for managing properties, availability, rates and quotes, bookings and reservations, guest messaging, and webhook subscriptions, authenticated with an X-ApiKey header.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/lodgify/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/lodgify/refs/heads/main/apis.yml)
+**Areas:** Vacation Rentals · Property Management · Booking · Channel Manager · Travel
 
-## Tags
+## Lodgify on APIs.io
 
-- Vacation Rental
-- Property Management
-- Booking
-- Channel Manager
-- Travel
+Everything profiled for Lodgify is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/lodgify/](https://apis.io/providers/lodgify/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (6)
 
-- **Created:** 2026-06-25
-- **Modified:** 2026-06-25
+- [Lodgify Availability API](https://apis.io/apis/lodgify/lodgify-availability-api/) — Availability calendars for properties and room types.
+- [Lodgify Bookings API](https://apis.io/apis/lodgify/lodgify-bookings-api/) — Booking and reservation lifecycle management.
+- [Lodgify Messaging API](https://apis.io/apis/lodgify/lodgify-messaging-api/) — Guest conversation threads and messages.
+- [Lodgify Properties API](https://apis.io/apis/lodgify/lodgify-properties-api/) — Vacation rental properties and their room types.
+- [Lodgify Rates & Quotes API](https://apis.io/apis/lodgify/lodgify-rates-quotes-api/) — Daily rates, rate settings, and priced stay quotes.
+- [Lodgify Webhooks API](https://apis.io/apis/lodgify/lodgify-webhooks-api/) — Event subscriptions for real-time notifications.
 
-## APIs
+### Published properties
 
-### Lodgify Properties API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Lists and retrieves vacation rental properties and their room types, including property details, per-property availability, statistics, and deleted properties.
+#### Agentic access (1)
 
-- **Human URL:** [https://docs.lodgify.com/reference](https://docs.lodgify.com/reference)
-- **Base URL:** `https://api.lodgify.com/v2`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Lodgify Agentic Access](https://apis.io/agentic-access/lodgify/lodgify-agentic-access/)
 
-- Properties
-- Rooms
-- Listings
+#### Collections (7)
 
-#### Properties
+Postman and Open Collection request collections.
 
-- [Documentation](https://docs.lodgify.com/reference)
-- [API Reference](https://docs.lodgify.com/reference/getallpropertiesasync)
-- [OpenAPI](openapi/lodgify-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/lodgify.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/lodgify.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Lodgify Public API](https://apis.io/collections/lodgify/open-lodgify/)
+- [Lodgify Public Availability API](https://apis.io/collections/lodgify/open-lodgify-availability-api/)
+- [Lodgify Public Availability Bookings API](https://apis.io/collections/lodgify/open-lodgify-bookings-api/)
+- [Lodgify Public Availability Messaging API](https://apis.io/collections/lodgify/open-lodgify-messaging-api/)
+- [Lodgify Public Availability Properties API](https://apis.io/collections/lodgify/open-lodgify-properties-api/)
+- [Lodgify Public Availability Rates & Quotes API](https://apis.io/collections/lodgify/open-lodgify-rates-quotes-api/)
+- [Lodgify Public Availability Webhooks API](https://apis.io/collections/lodgify/open-lodgify-webhooks-api/)
 
-### Lodgify Rates & Availability API
+#### Security (2)
 
-Reads the daily rates calendar and rate settings, creates and updates rates, and queries availability for users, properties, and room types for syncing and availability checks against connected channels.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://docs.lodgify.com/reference/ratescalendar](https://docs.lodgify.com/reference/ratescalendar)
-- **Base URL:** `https://api.lodgify.com/v2`
+- [Lodgify Authentication](https://apis.io/security/lodgify/lodgify-authentication/)
+- [Lodgify Domain Security](https://apis.io/security/lodgify/lodgify-domain-security/)
 
-#### Tags
+#### Plans and pricing (1)
 
-- Rates
-- Pricing
-- Availability
-- Calendar
+Published plans, tiers and prices.
 
-#### Properties
+- [Lodgify Plans Pricing](https://apis.io/plans/lodgify/lodgify-plans-pricing/)
 
-- [Documentation](https://docs.lodgify.com/reference/ratescalendar)
-- [API Reference](https://docs.lodgify.com/reference/ratescalendar)
-- [OpenAPI](openapi/lodgify-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/lodgify.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/lodgify.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Rate limits (1)
 
-### Lodgify Bookings & Reservations API
+Published request limits.
 
-Full lifecycle management of bookings and reservations - create, read, update, and delete bookings, generate payment links, set key codes, list external bookings, and perform check-in and check-out.
+- [Lodgify Rate Limits](https://apis.io/rate-limits/lodgify/lodgify-rate-limits/)
 
-- **Human URL:** [https://docs.lodgify.com/reference](https://docs.lodgify.com/reference)
-- **Base URL:** `https://api.lodgify.com/v2`
+#### FinOps (1)
 
-#### Tags
+What the API costs to run, by operation.
 
-- Bookings
-- Reservations
-- Payments
+- [Lodgify Finops](https://apis.io/finops/lodgify/lodgify-finops/)
 
-#### Properties
+## Where to find this API
 
-- [Documentation](https://docs.lodgify.com/reference)
-- [API Reference](https://docs.lodgify.com/reference)
-- [OpenAPI](openapi/lodgify-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/lodgify.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/lodgify.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-### Lodgify Quotes API
-
-Generates a priced quote for a property given dates and guest counts, returning the breakdown of rates, fees, and taxes used to drive bookings and payment links.
-
-- **Human URL:** [https://docs.lodgify.com/reference](https://docs.lodgify.com/reference)
-- **Base URL:** `https://api.lodgify.com/v2`
-
-#### Tags
-
-- Quotes
-- Pricing
-- Stays
-
-#### Properties
-
-- [Documentation](https://docs.lodgify.com/reference)
-- [API Reference](https://docs.lodgify.com/reference)
-- [OpenAPI](openapi/lodgify-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/lodgify.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/lodgify.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Lodgify Messaging API
-
-Retrieves a guest messaging thread by its thread GUID (found in booking data) to read the conversation between host and guest.
-
-- **Human URL:** [https://docs.lodgify.com/reference/get_v2-messaging-threadguid](https://docs.lodgify.com/reference/get_v2-messaging-threadguid)
-- **Base URL:** `https://api.lodgify.com/v2`
-
-#### Tags
-
-- Messaging
-- Threads
-- Guest Communication
-
-#### Properties
-
-- [Documentation](https://docs.lodgify.com/reference/get_v2-messaging-threadguid)
-- [API Reference](https://docs.lodgify.com/reference/get_v2-messaging-threadguid)
-- [OpenAPI](openapi/lodgify-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/lodgify.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/lodgify.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Lodgify Webhooks API
-
-Subscribes and unsubscribes target URLs to platform events (such as booking and rate changes) and lists active webhook subscriptions for real-time notifications.
-
-- **Human URL:** [https://docs.lodgify.com/reference/webhooks](https://docs.lodgify.com/reference/webhooks)
-- **Base URL:** `https://api.lodgify.com/webhooks/v1`
-
-#### Tags
-
-- Webhooks
-- Events
-- Notifications
-
-#### Properties
-
-- [Documentation](https://docs.lodgify.com/reference/webhooks)
-- [API Reference](https://docs.lodgify.com/reference/post_webhooks-v1-subscribe)
-- [OpenAPI](openapi/lodgify-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/lodgify.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/lodgify.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/lodgify)
-- [LinkedIn](https://www.linkedin.com/company/lodgify)
 - [Website](https://www.lodgify.com)
 - [Documentation](https://docs.lodgify.com)
-- [Plans](plans/lodgify-plans-pricing.yml)
-- [Rate Limits](rate-limits/lodgify-rate-limits.yml)
-- [Fin Ops](finops/lodgify-finops.yml)
+- [Blog](https://www.lodgify.com/blog/feed/)
+- [GitHub](https://github.com/lodgify)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 28.0** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 54.2 |
+| Contract governance | 0.0 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 32.1 |
+| Access clarity | 7.9 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 11.8** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/lodgify/](https://apis.io/providers/lodgify/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Lodgify: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/lodgify/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
